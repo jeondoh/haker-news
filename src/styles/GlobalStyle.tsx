@@ -37,10 +37,6 @@ const GlobalStyle = createGlobalStyle`
     display: none;
   }
 
-  body {
-    line-height: 1;
-  }
-
   menu, ol, ul {
     list-style: none;
   }
@@ -65,14 +61,25 @@ const GlobalStyle = createGlobalStyle`
   }
  
   body {
+    line-height: 1;
     font-family: 'Roboto', Pretendard, sans-serif;
+    font-style: normal;
     background-color: ${(props) => props.theme.bgColor};
     color: ${(props) => props.theme.textColor};
+    margin-top: 50px;
   }
 
   a {
     text-decoration: none;
     color: inherit;
+  }
+  
+  #root{
+    height: 812px;
+    width: 375px;
+    border: solid black 2px;
+    margin: 0 auto;
+    border-radius: 50px;
   }
 `;
 

@@ -1,3 +1,5 @@
+import { Wrapper } from "../styles/FooterStyle";
+
 export default function Footer() {
-  return <div>Footer</div>;
+  return <Wrapper></Wrapper>;
 }
