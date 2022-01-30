@@ -62,7 +62,7 @@ const GlobalStyle = createGlobalStyle`
  
   body {
     line-height: 1;
-    font-family: 'Roboto', Pretendard, sans-serif;
+    font-family: 'Roboto', 'Pretendard', sans-serif;
     font-style: normal;
     background-color: ${(props) => props.theme.bgColor};
     color: ${(props) => props.theme.textColor};
