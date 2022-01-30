@@ -1,10 +1,10 @@
 import { Wrapper } from "../styles/CardStyle";
-import TitleCards from "../components/TitleCards";
+import Cards from "../components/Cards";
 
 export default function Home() {
   return (
     <Wrapper>
-      <TitleCards />
+      <Cards />
     </Wrapper>
   );
 }

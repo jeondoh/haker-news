@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
     display: none;
   }
 `;
+
 /* 타이틀 카드(메인페이지) 인터페이스 */
 interface ITitleCard {
   commonColor: string;
@@ -31,7 +32,7 @@ export const TitleCard = styled.div<ITitleCard>`
   }
 `;
 /* 타이틀 카드 내 카테고리 제목 */
-export const TitleCard_Categroy = styled.span`
+export const TitleCard_Category = styled.span`
   position: absolute;
   width: 75px;
   height: 20px;
@@ -44,7 +45,7 @@ export const TitleCard_Categroy = styled.span`
   color: #ffffff;
 `;
 /* 타이틀 카드 내 부카테고리 제목 */
-export const TitleCard_SubCategroy = styled.span`
+export const TitleCard_SubCategory = styled.span`
   position: absolute;
   max-width: 140px;
   height: 12px;
@@ -72,4 +73,17 @@ export const TitleCard_Btn = styled.button<ITitleCard>`
     css`
       color: ${props.commonColor};
     `}
+`;
+/* 내용 카드 */
+export const ContentCard = styled.div`
+  height: auto;
+  width: 335px;
+  margin: 16px auto;
+  padding: 20px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  flex: none;
+  order: 3;
+  flex-grow: 0;
+  background-color: ${(props) => props.theme.cardBgColor};
 `;
