@@ -10,13 +10,13 @@ export const Wrapper = styled.div`
   overflow: hidden;
   border-top: 1px solid #808080;
 `;
-export const Wrapper_Flex = styled.div`
+export const WrapperFlex = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: 51px;
 `;
-export const Wrapper_Img = styled.div`
+export const WrapperImg = styled.div`
   cursor: pointer;
 `;
 
@@ -27,7 +27,7 @@ export const Img = styled.img`
   height: 32px;
 `;
 /* 하단바 이미지 글자 */
-export const Img_Text = styled.p`
+export const ImgText = styled.p`
   width: 31px;
   text-align: center;
   vertical-align: bottom;

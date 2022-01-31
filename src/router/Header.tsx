@@ -14,14 +14,16 @@ import SearchIcon from "@material-ui/icons/Search";
 import SignalCellularAltIcon from "@material-ui/icons/SignalCellularAlt";
 import WifiIcon from "@material-ui/icons/Wifi";
 import BatteryCharging80Icon from "@material-ui/icons/BatteryCharging80";
+import useTimer from "../utils/getTime";
 
 export default function Header() {
+  const [currentTime, setIntervalTime] = useTimer();
   return (
     <Wrapper>
       <CenterCircle />
       <MobileInfo>
         {/* TODO : MobileTime 현재시간을 변경 */}
-        <MobileTime>9:41</MobileTime>
+        <MobileTime>{currentTime}</MobileTime>
         <InfoWrapper>
           <Infos>
             <SignalCellularAltIcon fontSize="small" />
