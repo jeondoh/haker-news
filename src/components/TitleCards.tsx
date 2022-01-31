@@ -1,21 +1,17 @@
 import {
   TitleCard,
-  TitleCard_Btn,
-  TitleCard_Category,
-  TitleCard_SubCategory,
+  TitleCardBtn,
+  TitleCardCategory,
+  TitleCardSubCategory,
 } from "../styles/CardStyle";
-import { ITitleCard } from "../utils/TitleCardData";
+import { ICard } from "../utils/TitleCardData";
 
-export default function TitleCards({
-  category,
-  subCategory,
-  color,
-}: ITitleCard) {
+export default function TitleCards({ category, subCategory, color }: ICard) {
   return (
     <TitleCard commonColor={color}>
-      <TitleCard_Category>{category}</TitleCard_Category>
-      <TitleCard_SubCategory>{subCategory}</TitleCard_SubCategory>
-      <TitleCard_Btn commonColor={color}>More</TitleCard_Btn>
+      <TitleCardCategory>{category}</TitleCardCategory>
+      <TitleCardSubCategory>{subCategory}</TitleCardSubCategory>
+      <TitleCardBtn commonColor={color}>More</TitleCardBtn>
     </TitleCard>
   );
 }

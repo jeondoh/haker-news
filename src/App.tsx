@@ -5,6 +5,7 @@ import { isDarkAtom } from "./atom";
 import GlobalStyle from "./styles/GlobalStyle";
 import { ReactQueryDevtools } from "react-query/devtools";
 import Router from "./router/Router";
+import React from "react";
 
 function App() {
   const isDark = useRecoilValue(isDarkAtom);

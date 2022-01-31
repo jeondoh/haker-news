@@ -1,10 +1,10 @@
-export interface ITitleCard {
+export interface ICard {
+  color: string;
   category: string;
   subCategory: string;
-  color: string;
 }
 
-export default function TitleCardData(): ITitleCard[] {
+export default function TitleCardData(): ICard[] {
   return [
     {
       category: "TOP 5",

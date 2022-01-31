@@ -2,7 +2,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&display=swap');
   @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
   html, body, div, span, applet, object, iframe,
@@ -62,7 +62,7 @@ const GlobalStyle = createGlobalStyle`
  
   body {
     line-height: 1;
-    font-family: 'Roboto', 'Pretendard', sans-serif;
+    font-family: "Roboto", "Pretendard", sans-serif;
     font-style: normal;
     background-color: ${(props) => props.theme.bgColor};
     color: ${(props) => props.theme.textColor};

@@ -11,12 +11,12 @@ export const Wrapper = styled.div`
 `;
 
 /* 타이틀 카드(메인페이지) 인터페이스 */
-interface ITitleCard {
+export interface ICardColor {
   commonColor: string;
 }
 
 /* 타이틀 카드(메인페이지) */
-export const TitleCard = styled.div<ITitleCard>`
+export const TitleCard = styled.div<ICardColor>`
   position: relative;
   width: 335px;
   height: 63.04px;
@@ -32,7 +32,7 @@ export const TitleCard = styled.div<ITitleCard>`
   }
 `;
 /* 타이틀 카드 내 카테고리 제목 */
-export const TitleCard_Category = styled.span`
+export const TitleCardCategory = styled.span`
   position: absolute;
   width: 75px;
   height: 20px;
@@ -45,7 +45,7 @@ export const TitleCard_Category = styled.span`
   color: #ffffff;
 `;
 /* 타이틀 카드 내 부카테고리 제목 */
-export const TitleCard_SubCategory = styled.span`
+export const TitleCardSubCategory = styled.span`
   position: absolute;
   max-width: 140px;
   height: 12px;
@@ -58,7 +58,7 @@ export const TitleCard_SubCategory = styled.span`
   color: #ffffff;
 `;
 /* 타이틀 카드 내 버튼 */
-export const TitleCard_Btn = styled.button<ITitleCard>`
+export const TitleCardBtn = styled.button<ICardColor>`
   position: absolute;
   width: 70px;
   height: 30px;
@@ -86,4 +86,39 @@ export const ContentCard = styled.div`
   order: 3;
   flex-grow: 0;
   background-color: ${(props) => props.theme.cardBgColor};
+`;
+/* 내용 카드 > 제목 */
+export const ContentTitle = styled.p`
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  color: ${(props) => props.theme.textColor};
+  align-self: stretch;
+`;
+/* 내용 카드 > 내용 */
+export const ContentMain = styled.p`
+  padding-top: 13px;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  color: ${(props) => props.theme.textColor};
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  align-self: stretch;
+`;
+/* 내용 카드 > 좋아요, 댓글 Div */
+export const ContentIconDiv = styled.div`
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  font-size: 10px;
+  svg {
+    font-size: 15px;
+  }
+`;
+/* 내용 카드 > 좋아요, 댓글 개수 */
+export const ContentIconCnt = styled.span<ICardColor>`
+  padding: 0 2px;
+  color: ${(props) => props.commonColor};
 `;
