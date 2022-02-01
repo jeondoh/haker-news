@@ -5,6 +5,7 @@
 
 ### npm (CRA project to typescript)
 - recoil : 0.5.2
+- axios : 0.25.0
 - react-query : 3.34.12
 - react-router-dom : 6.2.1
 - styled-components : 5.3.3
