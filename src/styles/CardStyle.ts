@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
 /* 타이틀 카드(메인페이지) 인터페이스 */
 export interface ICardColor {
   commonColor: string;
+  index?: number;
 }
 
 /* 타이틀 카드(메인페이지) */

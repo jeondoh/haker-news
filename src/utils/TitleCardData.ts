@@ -4,7 +4,7 @@ export interface ICard {
   subCategory: string;
 }
 
-export default function TitleCardData(): ICard[] {
+export default function titleCardData(): ICard[] {
   return [
     {
       category: "TOP 5",

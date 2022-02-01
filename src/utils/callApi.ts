@@ -1,38 +1,90 @@
 import { useQueries } from "react-query";
+import axios from "axios";
 
+/* 공통 API PATH */
 const BASE_PATH = "https://hacker-news.firebaseio.com/v0";
-
-/* 카테고리별 API Fetch */
-export function getCategoryIds(category: string) {
-  return fetch(`${BASE_PATH}/${category}.json`).then((res) => res.json());
+/* API 인터페이스(:id 조회시) */
+export interface IContentCategory {
+  by: string;
+  descendants: number;
+  id: number;
+  kids: number[];
+  score: number;
+  time: number;
+  title: string;
+  type: string;
+  url: string;
 }
+/* 쿼리 key 인터페이스 */
+interface IQueryKey {
+  [key: string]: string[];
+}
+/* 쿼리 key */
+export const queryKeys: IQueryKey = {
+  top: ["stories", "top-stories"],
+  new: ["stories", "new-stories"],
+  ask: ["stories", "ask-stories"],
+  show: ["stories", "show-stories"],
+  job: ["stories", "job-stories"],
+};
+/* 카테고리별 API Fetch */
+const getHomeCategoryId = async (category: string) => {
+  return await axios
+    .get(`${BASE_PATH}/${category}.json`)
+    .then((value) => value.data.slice(0, 5));
+};
+/* 카테고리별 내용 API Fetch */
+const getContentCategory = async (idArr: Array<number>) => {
+  let resultArr: IContentCategory[] = [];
+  idArr.map(async (id) => {
+    await axios
+      .get(`${BASE_PATH}/item/${id}.json`)
+      .then((value) => resultArr.push(value.data));
+  });
+  return resultArr;
+};
 /* 카테고리별 API */
-export function GetAPIData() {
+export function useHomeAPIData() {
   return useQueries([
     {
-      queryKey: ["getTopId", "top-stories"],
-      queryFn: () => getCategoryIds("topstories"),
+      queryKey: queryKeys.top,
+      queryFn: () =>
+        getHomeCategoryId("topstories").then((value) =>
+          getContentCategory(value)
+        ),
       // 윈도우를 포커스 했을때 refetch 되지 않음. (default : true)
       refetchOnWindowFocus: false,
     },
     {
-      queryKey: ["getNewId", "new-stories"],
-      queryFn: () => getCategoryIds("newstories"),
+      queryKey: queryKeys.new,
+      queryFn: () =>
+        getHomeCategoryId("newstories").then((value) =>
+          getContentCategory(value)
+        ),
       refetchOnWindowFocus: false,
     },
     {
-      queryKey: ["getAskId", "ask-stories"],
-      queryFn: () => getCategoryIds("askstories"),
+      queryKey: queryKeys.ask,
+      queryFn: () =>
+        getHomeCategoryId("askstories").then((value) =>
+          getContentCategory(value)
+        ),
       refetchOnWindowFocus: false,
     },
     {
-      queryKey: ["getShowId", "show-stories"],
-      queryFn: () => getCategoryIds("showstories"),
+      queryKey: queryKeys.show,
+      queryFn: () =>
+        getHomeCategoryId("showstories").then((value) =>
+          getContentCategory(value)
+        ),
       refetchOnWindowFocus: false,
     },
     {
-      queryKey: ["getJobId", "job-stories"],
-      queryFn: () => getCategoryIds("jobstories"),
+      queryKey: queryKeys.job,
+      queryFn: () =>
+        getHomeCategoryId("jobstories").then((value) =>
+          getContentCategory(value)
+        ),
       refetchOnWindowFocus: false,
     },
   ]);

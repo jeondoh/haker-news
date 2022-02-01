@@ -8,23 +8,33 @@ import {
 import { ICardColor } from "../styles/CardStyle";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import CommentIcon from "@material-ui/icons/Comment";
+import { useQueryClient } from "react-query";
+import { IContentCategory, queryKeys } from "../utils/callApi";
 
-export default function ContentCards({ commonColor }: ICardColor) {
+export default function ContentCards({ commonColor, index }: ICardColor) {
+  const queryClient = useQueryClient();
+  const keys = Object.keys(queryKeys);
+  const value = queryKeys[keys[index!]];
+  const cachedData: IContentCategory[] = queryClient.getQueryData(value)!;
+
   return (
-    <ContentCard>
-      <ContentTitle>
-        Nature Neuroscience offers open access publishing
-      </ContentTitle>
-      <ContentMain>
-        The authors of primary research papers accepted by our journal have the
-        opportunity to make their work freely available to all upon publication.
-      </ContentMain>
-      <ContentIconDiv>
-        <FavoriteIcon htmlColor={commonColor} fontSize="small" />
-        <ContentIconCnt commonColor={commonColor}>1235678</ContentIconCnt>
-        <CommentIcon htmlColor={commonColor} fontSize="small" />
-        <ContentIconCnt commonColor={commonColor}>3453455</ContentIconCnt>
-      </ContentIconDiv>
-    </ContentCard>
+    <>
+      {cachedData?.map((data) => (
+        <ContentCard key={data.id}>
+          <ContentTitle>{data.title}</ContentTitle>
+          <ContentMain></ContentMain>
+          <ContentIconDiv>
+            <FavoriteIcon htmlColor={commonColor} fontSize="small" />
+            <ContentIconCnt commonColor={commonColor}>
+              {data.score ?? 0}
+            </ContentIconCnt>
+            <CommentIcon htmlColor={commonColor} fontSize="small" />
+            <ContentIconCnt commonColor={commonColor}>
+              {data.descendants ?? 0}
+            </ContentIconCnt>
+          </ContentIconDiv>
+        </ContentCard>
+      ))}
+    </>
   );
 }
