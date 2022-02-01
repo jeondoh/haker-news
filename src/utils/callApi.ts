@@ -34,7 +34,13 @@ const getHomeCategoryId = async (category: string) => {
     .then((value) => value.data.slice(0, 5));
 };
 /* 카테고리별 내용 API Fetch */
-const getContentCategory = async (idArr: Array<number>) => {
+export const getContentCategory = async (idArr: Array<number>) => {
+  return await Promise.all(
+    idArr.map((id) => {
+      return fetch(`${BASE_PATH}/item/${id}.json`).then((res) => res.json());
+    })
+  );
+  /*
   let resultArr: IContentCategory[] = [];
   idArr.map(async (id) => {
     await axios
@@ -42,49 +48,35 @@ const getContentCategory = async (idArr: Array<number>) => {
       .then((value) => resultArr.push(value.data));
   });
   return resultArr;
+  */
 };
 /* 카테고리별 API */
 export function useHomeAPIData() {
   return useQueries([
     {
       queryKey: queryKeys.top,
-      queryFn: () =>
-        getHomeCategoryId("topstories").then((value) =>
-          getContentCategory(value)
-        ),
+      queryFn: () => getHomeCategoryId("topstories"),
       // 윈도우를 포커스 했을때 refetch 되지 않음. (default : true)
       refetchOnWindowFocus: false,
     },
     {
       queryKey: queryKeys.new,
-      queryFn: () =>
-        getHomeCategoryId("newstories").then((value) =>
-          getContentCategory(value)
-        ),
+      queryFn: () => getHomeCategoryId("newstories"),
       refetchOnWindowFocus: false,
     },
     {
       queryKey: queryKeys.ask,
-      queryFn: () =>
-        getHomeCategoryId("askstories").then((value) =>
-          getContentCategory(value)
-        ),
+      queryFn: () => getHomeCategoryId("askstories"),
       refetchOnWindowFocus: false,
     },
     {
       queryKey: queryKeys.show,
-      queryFn: () =>
-        getHomeCategoryId("showstories").then((value) =>
-          getContentCategory(value)
-        ),
+      queryFn: () => getHomeCategoryId("showstories"),
       refetchOnWindowFocus: false,
     },
     {
       queryKey: queryKeys.job,
-      queryFn: () =>
-        getHomeCategoryId("jobstories").then((value) =>
-          getContentCategory(value)
-        ),
+      queryFn: () => getHomeCategoryId("jobstories"),
       refetchOnWindowFocus: false,
     },
   ]);
