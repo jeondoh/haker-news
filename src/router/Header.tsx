@@ -38,15 +38,13 @@ export default function Header() {
         <Link to="/">
           <LogoImg src={require("../images/Logo.png")} alt="Logo" />
         </Link>
-        <Link to="/top">
-          <LogoText>
-            svelte
-            <br />
-            hacker
-            <br />
-            news
-          </LogoText>
-        </Link>
+        <LogoText>
+          svelte
+          <br />
+          hacker
+          <br />
+          news
+        </LogoText>
         <Search>
           <SearchIcon color="action" />
         </Search>
