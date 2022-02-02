@@ -4,7 +4,7 @@ import {
   TitleCardCategory,
   TitleCardSubCategory,
 } from "../styles/CardStyle";
-import { ICard } from "../utils/TitleCardData";
+import { ICard } from "../utils/callApi";
 
 export default function TitleCards({ category, subCategory, color }: ICard) {
   return (

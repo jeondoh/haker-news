@@ -18,7 +18,7 @@ import useTimer from "../utils/getTime";
 import { Link } from "react-router-dom";
 
 export default function Header() {
-  const [currentTime, setIntervalTime] = useTimer();
+  const { timer: currentTime } = useTimer();
   return (
     <Wrapper>
       <CenterCircle />

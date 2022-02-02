@@ -11,7 +11,7 @@ import JobsPage from "./JobsPage";
 
 export default function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Header />
       <Routes>
         <Route path="/top" element={<TopPage />}>

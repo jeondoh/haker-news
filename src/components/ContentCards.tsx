@@ -1,6 +1,5 @@
 import {
   ContentIconDiv,
-  ContentMain,
   ContentTitle,
   ContentCard,
   ContentIconCnt,

@@ -18,11 +18,10 @@ export default function useTimer() {
   useEffect(() => {
     // 최초 1회 실행
     currentTimer();
-    console.log("최초1회실행");
   }, []);
 
   // intervalTime 만큼 반복실행
   startTimer();
 
-  return [timer, setIntervalTime];
+  return { timer, setIntervalTime };
 }
