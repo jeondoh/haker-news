@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/haker-news/static/js/main.b8c8f42d.js",
+    "static/media/Logo.png": "/haker-news/static/media/Logo.0f14769556901466dd1a.png",
+    "index.html": "/haker-news/index.html",
+    "main.b8c8f42d.js.map": "/haker-news/static/js/main.b8c8f42d.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.b8c8f42d.js"
+  ]
+}
