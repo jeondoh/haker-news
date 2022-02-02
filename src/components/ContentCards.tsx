@@ -22,7 +22,7 @@ export default function ContentCards({ commonColor, index }: ICardColor) {
       {cachedData?.map((data) => (
         <ContentCard key={data.id}>
           <ContentTitle>{data.title}</ContentTitle>
-          <ContentMain></ContentMain>
+          {/*<ContentMain></ContentMain>*/}
           <ContentIconDiv>
             <FavoriteIcon htmlColor={commonColor} fontSize="small" />
             <ContentIconCnt commonColor={commonColor}>

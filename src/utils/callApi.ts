@@ -46,7 +46,7 @@ const getContentCategory = async (idArr: Array<number>) => {
 };
 /* 카테고리별 API */
 export function useHomeAPIData() {
-  return useQueries([
+  const resultData = useQueries([
     {
       queryKey: queryKeys.top,
       queryFn: () => getHomeCategoryId("topstories"),
@@ -74,4 +74,6 @@ export function useHomeAPIData() {
       refetchOnWindowFocus: false,
     },
   ]);
+  const isLoading: boolean = !resultData.some((result) => result.isFetching);
+  return { isLoading, resultData };
 }

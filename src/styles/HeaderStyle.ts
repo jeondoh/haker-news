@@ -60,6 +60,7 @@ export const LogoSearchBar = styled.div`
 /* 로고 */
 export const LogoImg = styled.img`
   position: absolute;
+  cursor: pointer;
   width: 20px;
   height: 24.83px;
   left: 27px;

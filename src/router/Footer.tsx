@@ -5,14 +5,17 @@ import {
   WrapperFlex,
   WrapperImg,
 } from "../styles/FooterStyle";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
     <Wrapper>
       <WrapperFlex>
         <WrapperImg>
-          <Img src={require("../images/top.png")} alt="Logo" />
-          <ImgText>Top</ImgText>
+          <Link to="/top">
+            <Img src={require("../images/top.png")} alt="Logo" />
+            <ImgText>Top</ImgText>
+          </Link>
         </WrapperImg>
         <WrapperImg>
           <Img src={require("../images/new.png")} alt="Logo" />

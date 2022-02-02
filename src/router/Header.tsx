@@ -15,6 +15,7 @@ import SignalCellularAltIcon from "@material-ui/icons/SignalCellularAlt";
 import WifiIcon from "@material-ui/icons/Wifi";
 import BatteryCharging80Icon from "@material-ui/icons/BatteryCharging80";
 import useTimer from "../utils/getTime";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [currentTime, setIntervalTime] = useTimer();
@@ -33,14 +34,19 @@ export default function Header() {
         </InfoWrapper>
       </MobileInfo>
       <LogoSearchBar>
-        <LogoImg src={require("../images/Logo.png")} alt="Logo" />
-        <LogoText>
-          svelte
-          <br />
-          hacker
-          <br />
-          news
-        </LogoText>
+        {/* 로고 */}
+        <Link to="/">
+          <LogoImg src={require("../images/Logo.png")} alt="Logo" />
+        </Link>
+        <Link to="/top">
+          <LogoText>
+            svelte
+            <br />
+            hacker
+            <br />
+            news
+          </LogoText>
+        </Link>
         <Search>
           <SearchIcon color="action" />
         </Search>
