@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/haker-news/static/js/main.bed51eda.js",
+    "main.js": "/haker-news/static/js/main.cb8f2ad3.js",
     "static/media/Logo.png": "/haker-news/static/media/Logo.0f14769556901466dd1a.png",
     "index.html": "/haker-news/index.html",
-    "main.bed51eda.js.map": "/haker-news/static/js/main.bed51eda.js.map"
+    "main.cb8f2ad3.js.map": "/haker-news/static/js/main.cb8f2ad3.js.map"
   },
   "entrypoints": [
-    "static/js/main.bed51eda.js"
+    "static/js/main.cb8f2ad3.js"
   ]
 }
