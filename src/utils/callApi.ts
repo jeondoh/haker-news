@@ -29,26 +29,20 @@ export const queryKeys: IQueryKey = {
 };
 /* 카테고리별 API Fetch */
 const getHomeCategoryId = async (category: string) => {
-  return await axios
+  const data = await axios
     .get(`${BASE_PATH}/${category}.json`)
     .then((value) => value.data.slice(0, 5));
+  return await getContentCategory(data);
 };
-/* 카테고리별 내용 API Fetch */
-export const getContentCategory = async (idArr: Array<number>) => {
+/* 카테고리별 내용 API Fetch (getHomeCategoryId 에서 콜백 호출) */
+const getContentCategory = async (idArr: Array<number>) => {
   return await Promise.all(
     idArr.map((id) => {
-      return fetch(`${BASE_PATH}/item/${id}.json`).then((res) => res.json());
+      return axios
+        .get(`${BASE_PATH}/item/${id}.json`)
+        .then((value) => value.data);
     })
   );
-  /*
-  let resultArr: IContentCategory[] = [];
-  idArr.map(async (id) => {
-    await axios
-      .get(`${BASE_PATH}/item/${id}.json`)
-      .then((value) => resultArr.push(value.data));
-  });
-  return resultArr;
-  */
 };
 /* 카테고리별 API */
 export function useHomeAPIData() {
