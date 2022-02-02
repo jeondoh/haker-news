@@ -18,20 +18,28 @@ export default function Footer() {
           </Link>
         </WrapperImg>
         <WrapperImg>
-          <Img src={require("../images/new.png")} alt="Logo" />
-          <ImgText>New</ImgText>
+          <Link to="/new">
+            <Img src={require("../images/new.png")} alt="Logo" />
+            <ImgText>New</ImgText>
+          </Link>
         </WrapperImg>
         <WrapperImg>
-          <Img src={require("../images/ask.png")} alt="Logo" />
-          <ImgText>Ask</ImgText>
+          <Link to="/ask">
+            <Img src={require("../images/ask.png")} alt="Logo" />
+            <ImgText>Ask</ImgText>
+          </Link>
         </WrapperImg>
         <WrapperImg>
-          <Img src={require("../images/show.png")} alt="Logo" />
-          <ImgText>Show</ImgText>
+          <Link to="/show">
+            <Img src={require("../images/show.png")} alt="Logo" />
+            <ImgText>Show</ImgText>
+          </Link>
         </WrapperImg>
         <WrapperImg>
-          <Img src={require("../images/jobs.png")} alt="Logo" />
-          <ImgText>Jobs</ImgText>
+          <Link to="/jobs">
+            <Img src={require("../images/jobs.png")} alt="Logo" />
+            <ImgText>Jobs</ImgText>
+          </Link>
         </WrapperImg>
       </WrapperFlex>
     </Wrapper>
