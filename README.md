@@ -16,7 +16,7 @@
 - material-ui/icons: 4.11.2
 
 ### UX/UI prototype
-- https://www.figma.com/file/Za7n8gfpbelB5NICVLRipf/2%EC%A1%B0(%EA%B9%80%EC%8A%B9%ED%9B%88%2C%EC%84%9C%EB%AA%85%ED%98%84%2C%EC%9D%B4%EC%A0%95%EB%AF%BC)-(Copy)?node-id=85%3A3736
+- https://www.figma.com/file/B2sMWfqwRYySs1QBbORfG0/Haker-news---%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-Copy?node-id=168%3A2569
 
 ### Dev List
 - [x] recoil 상태 관리
