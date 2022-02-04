@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ICategoryColor } from "./CardStyle";
 
 export const Wrapper = styled.div`
   position: relative;
@@ -51,16 +52,15 @@ export const Infos = styled.div`
 `;
 
 /* 로고, 검색창 DIV */
-export const LogoSearchBar = styled.div`
+export const LogoSearchBar = styled.div<ICategoryColor>`
   position: relative;
   width: 100%;
   height: 54px;
-  border-bottom: 1px solid #fd6106;
+  border-bottom: 1px solid ${(props) => props.categoryColor};
 `;
 /* 로고 */
 export const LogoImg = styled.img`
   position: absolute;
-  cursor: pointer;
   width: 20px;
   height: 24.83px;
   left: 27px;

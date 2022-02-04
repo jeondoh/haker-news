@@ -1,29 +1,32 @@
 import {
   CategoryPageContentCard,
-  CategoryPageSubTitle,
+  CategoryPageTitle,
+  CategoryPageNewsUrl,
+  CategoryPagWrapper,
+  CategoryPageNewsTitle,
+  CategoryPageNewsInfo,
 } from "../styles/CardStyle";
-import { useLocation } from "react-router-dom";
-import { useQueryClient } from "react-query";
-import { ICard, QUERY_TITLE_KEY } from "../utils/callApi";
+import { useGetCategoryInfo } from "../utils/callApi";
 
 export default function Page() {
-  const queryClient = useQueryClient();
-  const location = useLocation();
-  const currentTitle = location.pathname.replace("/", "").toUpperCase();
-
-  const getCachedTitleData: ICard[] | undefined =
-    queryClient.getQueryData(QUERY_TITLE_KEY);
-
-  const titleArr = getCachedTitleData?.find((ele) =>
-    ele.category.includes(currentTitle)
-  );
+  const { currentTitle, titleArr } = useGetCategoryInfo();
 
   return (
-    <>
-      <CategoryPageSubTitle titleColor={titleArr?.color ?? "#FF6600"}>
+    <CategoryPagWrapper>
+      <CategoryPageTitle categoryColor={titleArr?.color ?? "#FF6600"}>
         <span>{currentTitle}</span>
-      </CategoryPageSubTitle>
-      <CategoryPageContentCard></CategoryPageContentCard>
-    </>
+      </CategoryPageTitle>
+      <CategoryPageContentCard>
+        <CategoryPageNewsUrl>
+          <span>500</span>
+        </CategoryPageNewsUrl>
+        <CategoryPageNewsTitle>The Curse of NixOS</CategoryPageNewsTitle>
+        <CategoryPageNewsInfo>
+          118 points by menoniac
+          <br />
+          1d ago 75 comments
+        </CategoryPageNewsInfo>
+      </CategoryPageContentCard>
+    </CategoryPagWrapper>
   );
 }

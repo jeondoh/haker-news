@@ -22,9 +22,6 @@ export const TitleCard = styled.div<ICardColor>`
   background-color: ${(props) => props.commonColor};
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
-  flex: none;
-  flex-grow: 0;
-  order: 1;
   margin: 16px auto;
   &:first-child {
     margin-top: 41px;
@@ -81,9 +78,6 @@ export const ContentCard = styled.div`
   padding: 20px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
-  flex: none;
-  order: 3;
-  flex-grow: 0;
   background-color: ${(props) => props.theme.bodyBgColor};
 `;
 /* 내용 카드 > 제목 */
@@ -91,8 +85,7 @@ export const ContentTitle = styled.p`
   font-weight: bold;
   font-size: 18px;
   line-height: 21px;
-  color: ${(props) => props.theme.textColor};
-  align-self: stretch;
+  color: ${(props) => props.theme.textBoldColor};
 `;
 /* 내용 카드 > 내용 */
 export const ContentMain = styled.p`
@@ -100,11 +93,7 @@ export const ContentMain = styled.p`
   font-weight: 300;
   font-size: 12px;
   line-height: 14px;
-  color: ${(props) => props.theme.textColor};
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-  align-self: stretch;
+  color: ${(props) => props.theme.textBoldColor};
 `;
 /* 내용 카드 > 좋아요, 댓글 Div */
 export const ContentIconDiv = styled.div`
@@ -121,24 +110,29 @@ export const ContentIconCnt = styled.span<ICardColor>`
   padding: 0 2px;
   color: ${(props) => props.commonColor};
 `;
-/* 카테고리페이지 > 부제목 인터페이스 */
-interface IDetailSubTitle {
-  titleColor: string;
+export const CategoryPagWrapper = styled.div`
+  width: 100%;
+  font-family: Pretendard, sans-serif;
+  border-bottom: 0.2px solid lightgray;
+`;
+
+/* 카테고리별 색상 인터페이스 */
+export interface ICategoryColor {
+  categoryColor: string;
 }
-/* 카테고리페이지 > 부제목 */
-export const CategoryPageSubTitle = styled.div<IDetailSubTitle>`
+/* 카테고리페이지 > 타이틀 */
+export const CategoryPageTitle = styled.div<ICategoryColor>`
   height: 56px;
+  border-bottom: 0.2px solid lightgray;
   span {
     display: flex;
     padding: 10px 0 10px 20px;
     align-items: center;
-    font-family: Pretendard, sans-serif;
     font-weight: bold;
     font-size: 36px;
     line-height: 100%;
-    color: ${(props) => props.titleColor};
+    color: ${(props) => props.categoryColor};
   }
-  border-bottom: 0.2px solid lightgray;
 `;
 /* 카테고리페이지 > 카드 */
 export const CategoryPageContentCard = styled.div`
@@ -147,11 +141,39 @@ export const CategoryPageContentCard = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  width: 100%;
   margin: 1px auto;
   padding: 20px;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
   background-color: ${(props) => props.theme.bodyBgColor};
+`;
+/* 카테고리페이지 > 게시글 URL */
+export const CategoryPageNewsUrl = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 10px;
+  max-width: 371px;
+  height: 20px;
+  border: 1px solid #909090;
+  border-radius: 12.5px;
+  margin: 10px 0;
+  span {
+    font-weight: bold;
+    font-size: 10px;
+    color: ${(props) => props.theme.textColor};
+  }
+`;
+/* 카테고리페이지 > 부제목 */
+export const CategoryPageNewsTitle = styled.p`
+  font-weight: 800;
+  font-size: 16px;
+  color: ${(props) => props.theme.textBoldColor};
+  margin: 10px 0;
+`;
+
+/* 카테고리페이지 > 정보 */
+export const CategoryPageNewsInfo = styled.p`
+  font-size: 10px;
+  line-height: 110%;
+  margin: 10px 0;
 `;

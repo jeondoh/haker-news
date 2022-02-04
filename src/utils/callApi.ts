@@ -1,5 +1,6 @@
-import { useQueries } from "react-query";
+import { useQueries, useQueryClient } from "react-query";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 /* 공통 API PATH */
 const BASE_PATH = "https://hacker-news.firebaseio.com/v0";
@@ -100,4 +101,23 @@ export function useHomeAPIData() {
   ]);
   const isLoading: boolean = !resultData.some((result) => result.isFetching);
   return { isLoading, resultData };
+}
+/**
+ * 카테고리별 카드 정보 불러오기 커스텀 훅
+ * ###Return : currentTitle, titleArr
+ * @currentTitle(string) 현재 url 파라메터, undefined 예외처리 필요
+ * @titleArr(ICard | undefined) url 파라메터에 해당되는 ICard 객체
+ **/
+export function useGetCategoryInfo() {
+  const queryClient = useQueryClient();
+  const location = useLocation();
+  const currentTitle: string = location.pathname.replace("/", "").toUpperCase();
+
+  const getCachedTitleData: ICard[] | undefined =
+    queryClient.getQueryData(QUERY_TITLE_KEY);
+
+  const titleArr: ICard | undefined = getCachedTitleData?.find((ele) =>
+    ele.category.includes(currentTitle)
+  );
+  return { currentTitle, titleArr };
 }
