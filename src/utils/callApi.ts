@@ -22,19 +22,38 @@ export interface ICard {
   category: string;
   subCategory: string;
 }
-/* 쿼리 key 인터페이스 */
-interface IQueryKey {
-  [key: string]: string[];
+/* filter 목록 */
+export const QUERY_FILTER_KEYS: Array<string> = [
+  "top",
+  "new",
+  "ask",
+  "show",
+  "jobs",
+];
+/* react-query key 인터페이스 */
+interface IQueryArrFn {
+  (): string[];
 }
-/* Title 쿼리 key */
-export const QUERY_TITLE_KEY: string = "titleData";
-/* 쿼리 key */
-export const QUERY_KEYS: IQueryKey = {
-  top: ["stories", "top-stories"],
-  new: ["stories", "new-stories"],
-  ask: ["stories", "ask-stories"],
-  show: ["stories", "show-stories"],
-  job: ["stories", "job-stories"],
+interface IQueryArrListFn {
+  (filters: string): (string | object)[];
+}
+interface IQueryArrDetailFn {
+  (id: number): (string | number)[];
+}
+interface IQueryArr {
+  all: string[];
+  lists: IQueryArrFn;
+  list: IQueryArrListFn;
+  details: IQueryArrFn;
+  detail: IQueryArrDetailFn;
+}
+/* react-query key 모음, 효율적 관리를 위해 함수로 나눔 */
+export const QUERY_KEYS: IQueryArr = {
+  all: ["stories"],
+  lists: () => [...QUERY_KEYS.all, "list"],
+  list: (filters: string) => [...QUERY_KEYS.lists(), { filters }],
+  details: () => [...QUERY_KEYS.all, "detail"],
+  detail: (id: number) => [...QUERY_KEYS.details(), id],
 };
 /* 카테고리별 카드 정보 가져오기(임의로 json 만듬) */
 export function getTitleInfo() {
@@ -60,10 +79,16 @@ const getContentCategory = async (idArr: Array<number>) => {
   );
 };
 /* 카테고리별 API */
+/**
+ * 카테고리별 API 커스텀 훅
+ * ###Return : isLoading, resultData
+ * @isLoading(boolean) isFetching 여부
+ * @resultData(UseQueryResult<any[], unknown>) 각 카테고리별 데이터
+ **/
 export function useHomeAPIData() {
   const resultData = useQueries([
     {
-      queryKey: QUERY_KEYS.top,
+      queryKey: QUERY_KEYS.list(QUERY_FILTER_KEYS[0]),
       queryFn: () => getHomeCategoryId("topstories"),
       // 윈도우를 포커스 했을때 refetch 되지 않음. (default : true)
       refetchOnWindowFocus: false,
@@ -71,28 +96,28 @@ export function useHomeAPIData() {
       cacheTime: 1200000, // 20분
     },
     {
-      queryKey: QUERY_KEYS.new,
+      queryKey: QUERY_KEYS.list(QUERY_FILTER_KEYS[1]),
       queryFn: () => getHomeCategoryId("newstories"),
       refetchOnWindowFocus: false,
       staleTime: 600000, // 10분
       cacheTime: 1200000, // 20분
     },
     {
-      queryKey: QUERY_KEYS.ask,
+      queryKey: QUERY_KEYS.list(QUERY_FILTER_KEYS[2]),
       queryFn: () => getHomeCategoryId("askstories"),
       refetchOnWindowFocus: false,
       staleTime: 600000, // 10분
       cacheTime: 1200000, // 20분
     },
     {
-      queryKey: QUERY_KEYS.show,
+      queryKey: QUERY_KEYS.list(QUERY_FILTER_KEYS[3]),
       queryFn: () => getHomeCategoryId("showstories"),
       refetchOnWindowFocus: false,
       staleTime: 600000, // 10분
       cacheTime: 1200000, // 20분
     },
     {
-      queryKey: QUERY_KEYS.job,
+      queryKey: QUERY_KEYS.list(QUERY_FILTER_KEYS[4]),
       queryFn: () => getHomeCategoryId("jobstories"),
       refetchOnWindowFocus: false,
       staleTime: 600000, // 10분
@@ -113,8 +138,9 @@ export function useGetCategoryInfo() {
   const location = useLocation();
   const currentTitle: string = location.pathname.replace("/", "").toUpperCase();
 
-  const getCachedTitleData: ICard[] | undefined =
-    queryClient.getQueryData(QUERY_TITLE_KEY);
+  const getCachedTitleData: ICard[] | undefined = queryClient.getQueryData(
+    QUERY_KEYS.list("title")
+  );
 
   const titleArr: ICard | undefined = getCachedTitleData?.find((ele) =>
     ele.category.includes(currentTitle)
