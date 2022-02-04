@@ -36,7 +36,7 @@ export default function Footer() {
           </Link>
         </WrapperImg>
         <WrapperImg>
-          <Link to="/jobs">
+          <Link to="/job">
             <Img src={require("../images/jobs.png")} alt="Logo" />
             <ImgText>Jobs</ImgText>
           </Link>

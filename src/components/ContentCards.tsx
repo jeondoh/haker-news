@@ -16,7 +16,7 @@ import {
 
 export default function ContentCards({ commonColor, index }: ICardColor) {
   const queryClient = useQueryClient();
-  const value = QUERY_KEYS.list(QUERY_FILTER_KEYS[index!]);
+  const value = QUERY_KEYS.list(QUERY_FILTER_KEYS[index!][0]);
   const cachedData: IContentCategory[] = queryClient.getQueryData(value)!;
 
   return (

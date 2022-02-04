@@ -6,10 +6,16 @@ import {
   CategoryPageNewsTitle,
   CategoryPageNewsInfo,
 } from "../styles/CardStyle";
-import { useGetCategoryInfo } from "../utils/callApi";
+import { useGetCategoryInfo, useInfiniteQueryCategory } from "../utils/callApi";
 
 export default function Page() {
   const { currentTitle, titleArr } = useGetCategoryInfo();
+  const { isFetching, data } = useInfiniteQueryCategory(
+    currentTitle.toLowerCase()
+  );
+
+  console.log("isFetching : ", isFetching);
+  console.log(data);
 
   return (
     <CategoryPagWrapper>
