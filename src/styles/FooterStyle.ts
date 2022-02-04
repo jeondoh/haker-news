@@ -40,5 +40,5 @@ export const ImgText = styled.p`
   vertical-align: bottom;
   font-size: 8.5px;
   line-height: 10px;
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.textBoldColor};
 `;

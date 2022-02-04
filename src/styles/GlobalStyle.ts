@@ -65,7 +65,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Roboto", Pretendard, sans-serif;
     font-style: normal;
     background-color: ${(props) => props.theme.bgColor};
-    color: ${(props) => props.theme.textColor};
+    color: ${(props) => props.theme.textBoldColor};
     margin-top: 50px;
   }
 
