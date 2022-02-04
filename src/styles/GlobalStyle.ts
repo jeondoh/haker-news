@@ -62,7 +62,7 @@ const GlobalStyle = createGlobalStyle`
  
   body {
     line-height: 1;
-    font-family: "Roboto", "Pretendard", sans-serif;
+    font-family: "Roboto", Pretendard, sans-serif;
     font-style: normal;
     background-color: ${(props) => props.theme.bgColor};
     color: ${(props) => props.theme.textColor};
@@ -77,7 +77,7 @@ const GlobalStyle = createGlobalStyle`
   #root{
     height: 812px;
     width: 375px;
-    border: solid black 2px;
+    border: 2px solid black;
     margin: 0 auto;
     border-radius: 50px;
   }

@@ -9,13 +9,11 @@ export const Wrapper = styled.div`
     display: none;
   }
 `;
-
 /* 타이틀 카드(메인페이지) 인터페이스 */
 export interface ICardColor {
   commonColor: string;
   index?: number;
 }
-
 /* 타이틀 카드(메인페이지) */
 export const TitleCard = styled.div<ICardColor>`
   position: relative;
@@ -86,7 +84,7 @@ export const ContentCard = styled.div`
   flex: none;
   order: 3;
   flex-grow: 0;
-  background-color: ${(props) => props.theme.cardBgColor};
+  background-color: ${(props) => props.theme.bodyBgColor};
 `;
 /* 내용 카드 > 제목 */
 export const ContentTitle = styled.p`
@@ -122,4 +120,38 @@ export const ContentIconDiv = styled.div`
 export const ContentIconCnt = styled.span<ICardColor>`
   padding: 0 2px;
   color: ${(props) => props.commonColor};
+`;
+/* 카테고리페이지 > 부제목 인터페이스 */
+interface IDetailSubTitle {
+  titleColor: string;
+}
+/* 카테고리페이지 > 부제목 */
+export const CategoryPageSubTitle = styled.div<IDetailSubTitle>`
+  height: 56px;
+  span {
+    display: flex;
+    padding: 10px 0 10px 20px;
+    align-items: center;
+    font-family: Pretendard, sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 100%;
+    color: ${(props) => props.titleColor};
+  }
+  border-bottom: 0.2px solid lightgray;
+`;
+/* 카테고리페이지 > 카드 */
+export const CategoryPageContentCard = styled.div`
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 100%;
+  margin: 1px auto;
+  padding: 20px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  background-color: ${(props) => props.theme.bodyBgColor};
 `;

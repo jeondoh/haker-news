@@ -1,13 +1,18 @@
 import TitleCards from "./TitleCards";
 import ContentCards from "./ContentCards";
-import { getTitleInfo, ICard, useHomeAPIData } from "../utils/callApi";
+import {
+  getTitleInfo,
+  ICard,
+  QUERY_TITLE_KEY,
+  useHomeAPIData,
+} from "../utils/callApi";
 import Loading from "./Loading";
 import { useQuery } from "react-query";
 
 export default function Cards() {
   // 카테고리별 카드 정보 가져오기
   const { data: titleData } = useQuery<ICard[]>(
-    ["titleData"],
+    [QUERY_TITLE_KEY],
     () => getTitleInfo(),
     // 변하지 않는 데이터기 때문에 캐싱 무제한 지정
     { staleTime: Infinity, cacheTime: Infinity }

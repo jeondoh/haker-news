@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { invertScale } from "framer-motion/types/value/use-inverted-scale";
+import { inherits } from "util";
 
 export const Wrapper = styled.div`
   position: relative;
@@ -21,10 +23,15 @@ export const WrapperImg = styled.div`
 `;
 
 /* 하단바 이미지 */
+const filterInvert = css`
+  filter: invert();
+`;
+
 export const Img = styled.img`
   display: block;
   width: 32px;
   height: 32px;
+  ${(props) => (props.theme.isDark ? filterInvert : "")};
 `;
 /* 하단바 이미지 글자 */
 export const ImgText = styled.p`

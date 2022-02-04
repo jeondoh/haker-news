@@ -46,7 +46,7 @@ export default function Header() {
           news
         </LogoText>
         <Search>
-          <SearchIcon color="action" />
+          <SearchIcon />
         </Search>
       </LogoSearchBar>
     </Wrapper>

@@ -25,8 +25,10 @@ export interface ICard {
 interface IQueryKey {
   [key: string]: string[];
 }
+/* Title 쿼리 key */
+export const QUERY_TITLE_KEY: string = "titleData";
 /* 쿼리 key */
-export const queryKeys: IQueryKey = {
+export const QUERY_KEYS: IQueryKey = {
   top: ["stories", "top-stories"],
   new: ["stories", "new-stories"],
   ask: ["stories", "ask-stories"],
@@ -60,7 +62,7 @@ const getContentCategory = async (idArr: Array<number>) => {
 export function useHomeAPIData() {
   const resultData = useQueries([
     {
-      queryKey: queryKeys.top,
+      queryKey: QUERY_KEYS.top,
       queryFn: () => getHomeCategoryId("topstories"),
       // 윈도우를 포커스 했을때 refetch 되지 않음. (default : true)
       refetchOnWindowFocus: false,
@@ -68,28 +70,28 @@ export function useHomeAPIData() {
       cacheTime: 1200000, // 20분
     },
     {
-      queryKey: queryKeys.new,
+      queryKey: QUERY_KEYS.new,
       queryFn: () => getHomeCategoryId("newstories"),
       refetchOnWindowFocus: false,
       staleTime: 600000, // 10분
       cacheTime: 1200000, // 20분
     },
     {
-      queryKey: queryKeys.ask,
+      queryKey: QUERY_KEYS.ask,
       queryFn: () => getHomeCategoryId("askstories"),
       refetchOnWindowFocus: false,
       staleTime: 600000, // 10분
       cacheTime: 1200000, // 20분
     },
     {
-      queryKey: queryKeys.show,
+      queryKey: QUERY_KEYS.show,
       queryFn: () => getHomeCategoryId("showstories"),
       refetchOnWindowFocus: false,
       staleTime: 600000, // 10분
       cacheTime: 1200000, // 20분
     },
     {
-      queryKey: queryKeys.job,
+      queryKey: QUERY_KEYS.job,
       queryFn: () => getHomeCategoryId("jobstories"),
       refetchOnWindowFocus: false,
       staleTime: 600000, // 10분

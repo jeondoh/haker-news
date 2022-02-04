@@ -8,12 +8,12 @@ import { ICardColor } from "../styles/CardStyle";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import CommentIcon from "@material-ui/icons/Comment";
 import { useQueryClient } from "react-query";
-import { IContentCategory, queryKeys } from "../utils/callApi";
+import { IContentCategory, QUERY_KEYS } from "../utils/callApi";
 
 export default function ContentCards({ commonColor, index }: ICardColor) {
   const queryClient = useQueryClient();
-  const keys = Object.keys(queryKeys);
-  const value = queryKeys[keys[index!]];
+  const keys = Object.keys(QUERY_KEYS);
+  const value = QUERY_KEYS[keys[index!]];
   const cachedData: IContentCategory[] = queryClient.getQueryData(value)!;
 
   return (

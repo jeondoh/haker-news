@@ -79,4 +79,5 @@ export const Search = styled.div`
   position: absolute;
   top: 15px;
   right: 20px;
+  color: ${(props) => props.theme.textColor};
 `;
