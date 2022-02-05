@@ -1,6 +1,4 @@
 import styled, { css } from "styled-components";
-import { invertScale } from "framer-motion/types/value/use-inverted-scale";
-import { inherits } from "util";
 
 export const Wrapper = styled.div`
   position: relative;

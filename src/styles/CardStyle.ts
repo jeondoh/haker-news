@@ -113,7 +113,6 @@ export const ContentIconCnt = styled.span<ICardColor>`
 export const CategoryPagWrapper = styled.div`
   width: 100%;
   font-family: Pretendard, sans-serif;
-  border-bottom: 0.2px solid lightgray;
 `;
 
 /* 카테고리별 색상 인터페이스 */
@@ -144,6 +143,7 @@ export const CategoryPageContentCard = styled.div`
   margin: 1px auto;
   padding: 20px;
   background-color: ${(props) => props.theme.bodyBgColor};
+  border-bottom: 0.2px solid lightgray;
 `;
 /* 카테고리페이지 > 게시글 URL */
 export const CategoryPageNewsUrl = styled.div`
@@ -157,6 +157,7 @@ export const CategoryPageNewsUrl = styled.div`
   border: 1px solid #909090;
   border-radius: 12.5px;
   margin: 10px 0;
+  cursor: pointer;
   span {
     font-weight: bold;
     font-size: 10px;
@@ -167,6 +168,7 @@ export const CategoryPageNewsUrl = styled.div`
 export const CategoryPageNewsTitle = styled.p`
   font-weight: 800;
   font-size: 16px;
+  line-height: 110%;
   color: ${(props) => props.theme.textBoldColor};
   margin: 10px 0;
 `;
@@ -176,4 +178,7 @@ export const CategoryPageNewsInfo = styled.p`
   font-size: 10px;
   line-height: 110%;
   margin: 10px 0;
+  span {
+    font-weight: bold;
+  }
 `;
