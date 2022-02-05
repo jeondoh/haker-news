@@ -157,10 +157,12 @@ const getInfiniteCategoryId = async ({
   category,
   pageParam = 1,
 }: IInfiniteCategory) => {
+  const startPage = (pageParam - 1) * 10;
+  const endPage = startPage + 10;
+
   const data = await axios
-    .get(`${BASE_PATH}/${category}.json?page=${pageParam}&limit=10`)
-    .then((value) => value.data);
-  console.log(`${BASE_PATH}/${category}.json?page=${pageParam}&limit=10`);
+    .get(`${BASE_PATH}/${category}.json?page=${pageParam}`)
+    .then((value) => value.data.slice(startPage, endPage));
   return await getContentCategory(data);
 };
 /**
@@ -168,10 +170,12 @@ const getInfiniteCategoryId = async ({
  * ###Return : isFetching, data
  * @isFetching(boolean) 쿼리 fetching 여부
  * @data(any[]) api 호출 결과 data
+ * @hasNextPage(boolean) 다음페이지가 있는지 체크 여부
+ * @fetchNextPage(function) 다음 페이지로 이동 함수
  **/
 export function useInfiniteQueryCategory(pageName: string) {
   const category: string = `${pageName}stories`;
-  const { isFetching, data } = useInfiniteQuery(
+  const { isFetching, data, hasNextPage, fetchNextPage } = useInfiniteQuery(
     QUERY_KEYS.detail(pageName),
     ({ pageParam }) => getInfiniteCategoryId({ category, pageParam }),
     {
@@ -186,7 +190,5 @@ export function useInfiniteQueryCategory(pageName: string) {
       cacheTime: 600000, // 10분
     }
   );
-  return { isFetching, data };
+  return { isFetching, data, hasNextPage, fetchNextPage };
 }
-// https://fkkmemi.github.io/nuxt/nuxt-010-firebase-firestore-paging/
-// firebase 문법 참고해서 페이징 해야함

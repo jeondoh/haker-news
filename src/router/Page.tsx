@@ -10,12 +10,8 @@ import { useGetCategoryInfo, useInfiniteQueryCategory } from "../utils/callApi";
 
 export default function Page() {
   const { currentTitle, titleArr } = useGetCategoryInfo();
-  const { isFetching, data } = useInfiniteQueryCategory(
-    currentTitle.toLowerCase()
-  );
-
-  console.log("isFetching : ", isFetching);
-  console.log(data);
+  const { isFetching, data, hasNextPage, fetchNextPage } =
+    useInfiniteQueryCategory(currentTitle.toLowerCase());
 
   return (
     <CategoryPagWrapper>
@@ -33,6 +29,7 @@ export default function Page() {
           1d ago 75 comments
         </CategoryPageNewsInfo>
       </CategoryPageContentCard>
+      <button onClick={() => fetchNextPage()}>sdfs</button>
     </CategoryPagWrapper>
   );
 }
