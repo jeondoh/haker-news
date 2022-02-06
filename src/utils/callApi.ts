@@ -10,6 +10,7 @@ export interface IContentCategory {
   descendants: number;
   id: number;
   kids: number[];
+  text: string;
   score: number;
   time: number;
   title: string;

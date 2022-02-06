@@ -3,6 +3,7 @@ import {
   ContentIconCnt,
   ContentIconDiv,
   ContentTitle,
+  ContentMain,
   ICardColor,
 } from "../styles/CardStyle";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -27,28 +28,36 @@ export default function ContentCards({
   return (
     <>
       {cachedData?.map((data) => (
-        <ContentCard key={data.id}>
-          <ContentTitle>
-            <Link
-              to={`/${category?.replace(" 5", "").toLowerCase()}/${data.id}`}
-              state={{ cardId: data.id }}
-            >
-              {data.title}
-            </Link>
-          </ContentTitle>
-          {/*<ContentMain></ContentMain>*/}
-          <ContentIconDiv>
-            <FavoriteIcon htmlColor={commonColor} fontSize="small" />
-            <ContentIconCnt commonColor={commonColor}>
-              {data.score ?? 0}
-            </ContentIconCnt>
-            <CommentIcon htmlColor={commonColor} fontSize="small" />
-            <ContentIconCnt commonColor={commonColor}>
-              {data.descendants ?? 0}
-            </ContentIconCnt>
-          </ContentIconDiv>
-        </ContentCard>
+        <Link
+          to={`/${category?.replace(" 5", "").toLowerCase()}/${data.id}`}
+          state={{ cardId: data.id }}
+        >
+          <ContentCard key={data.id}>
+            <ContentTitle>{data.title}</ContentTitle>
+            {data.text ? (
+              <ContentMain>{removeHTMLEntities(data.text)}</ContentMain>
+            ) : null}
+            <ContentIconDiv>
+              <FavoriteIcon htmlColor={commonColor} fontSize="small" />
+              <ContentIconCnt commonColor={commonColor}>
+                {data.score ?? 0}
+              </ContentIconCnt>
+              <CommentIcon htmlColor={commonColor} fontSize="small" />
+              <ContentIconCnt commonColor={commonColor}>
+                {data.descendants ?? 0}
+              </ContentIconCnt>
+            </ContentIconDiv>
+          </ContentCard>
+        </Link>
       ))}
     </>
   );
 }
+// 특수문자 제거
+const removeHTMLEntities = (textData: string): string => {
+  let result = textData.slice(0, 300);
+  result = result.replaceAll(/<script[^>]*>([\S\s]*?)<\/script>/gim, "");
+  result = result.replaceAll(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gim, "");
+  result = result.replaceAll("&#x27;", "'");
+  return `${result}...`;
+};
