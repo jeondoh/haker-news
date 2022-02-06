@@ -1,4 +1,5 @@
 import {
+  CategoryInfiniteDiv,
   CategoryPageContentCard,
   CategoryPageNewsInfo,
   CategoryPageNewsTitle,
@@ -11,45 +12,61 @@ import {
   useGetCategoryInfo,
   useInfiniteQueryCategory,
 } from "../utils/callApi";
+import Loading from "../components/Loading";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 
 export default function Page() {
   const { currentTitle, titleArr } = useGetCategoryInfo();
   const { isFetching, data, hasNextPage, fetchNextPage } =
     useInfiniteQueryCategory(currentTitle.toLowerCase());
 
+  // 무한 스크롤을 위한 ref
+  const [ref, inView] = useInView();
+  // 무한스크롤
+  useEffect(() => {
+    if (hasNextPage && inView) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage]);
+
   return (
     <CategoryPagWrapper>
       <CategoryPageTitle categoryColor={titleArr?.color ?? "#FF6600"}>
         <span>{currentTitle}</span>
       </CategoryPageTitle>
-      {!isFetching
-        ? data?.pages.map((group: IContentCategory[]) => {
-            return group.map((value) => (
-              <CategoryPageContentCard key={value.id}>
-                <CategoryPageNewsUrl>
-                  <span>
-                    <a
-                      href={value.url}
-                      target="_blank"
-                      rel="noreferrer nofollow noopener"
-                    >
-                      {subTitleUrl(value.url)}
-                    </a>
-                  </span>
-                </CategoryPageNewsUrl>
-                <CategoryPageNewsTitle>{value.title}</CategoryPageNewsTitle>
-                <CategoryPageNewsInfo>
-                  {value.score} points <span>by {value.by}</span>
-                  <br />
-                  {getDiffCurrentTime(value.time)}{" "}
-                  {getArrayLength(value.kids) ?? 0} comments
-                </CategoryPageNewsInfo>
-              </CategoryPageContentCard>
-            ));
-          })
-        : null}
-      {hasNextPage && !isFetching ? (
-        <button onClick={() => fetchNextPage()}>sdfs</button>
+      {data === undefined && isFetching ? (
+        <Loading />
+      ) : (
+        data?.pages.map((group: IContentCategory[]) => {
+          return group.map((value) => (
+            <CategoryPageContentCard key={value.id}>
+              <CategoryPageNewsUrl>
+                <span>
+                  <a
+                    href={value.url}
+                    target="_blank"
+                    rel="noreferrer nofollow noopener"
+                  >
+                    {subTitleUrl(value.url)}
+                  </a>
+                </span>
+              </CategoryPageNewsUrl>
+              <CategoryPageNewsTitle>{value.title}</CategoryPageNewsTitle>
+              <CategoryPageNewsInfo>
+                {value.score} points <span>by {value.by}</span>
+                <br />
+                {getDiffCurrentTime(value.time)}{" "}
+                {getArrayLength(value.kids) ?? 0} comments
+              </CategoryPageNewsInfo>
+            </CategoryPageContentCard>
+          ));
+        })
+      )}
+      {hasNextPage ? (
+        <CategoryInfiniteDiv ref={ref}>
+          <Loading />
+        </CategoryInfiniteDiv>
       ) : null}
     </CategoryPagWrapper>
   );

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { useInfiniteQueryCategory } from "../utils/callApi";
 
 export const Wrapper = styled.div`
   height: 631px;
@@ -144,6 +145,9 @@ export const CategoryPageContentCard = styled.div`
   padding: 20px;
   background-color: ${(props) => props.theme.bodyBgColor};
   border-bottom: 0.2px solid lightgray;
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 /* 카테고리페이지 > 게시글 URL */
 export const CategoryPageNewsUrl = styled.div`
@@ -172,7 +176,6 @@ export const CategoryPageNewsTitle = styled.p`
   color: ${(props) => props.theme.textBoldColor};
   margin: 10px 0;
 `;
-
 /* 카테고리페이지 > 정보 */
 export const CategoryPageNewsInfo = styled.p`
   font-size: 10px;
@@ -181,4 +184,9 @@ export const CategoryPageNewsInfo = styled.p`
   span {
     font-weight: bold;
   }
+`;
+/* 무한스크롤 인식 DIV */
+export const CategoryInfiniteDiv = styled.div`
+  width: 100%;
+  height: 120px;
 `;
