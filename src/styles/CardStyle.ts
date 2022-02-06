@@ -1,12 +1,19 @@
 import styled, { css } from "styled-components";
-import { useInfiniteQueryCategory } from "../utils/callApi";
 
 export const Wrapper = styled.div`
+  position: relative;
   height: 631px;
   background-color: ${(props) => props.theme.bgColor};
   overflow-y: auto;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 30px;
+    background-color: ${(props) => props.theme.textBoldColor};
+  }
+  &::-webkit-scrollbar-track {
     display: none;
   }
 `;
@@ -77,7 +84,7 @@ export const ContentCard = styled.div`
   width: 335px;
   margin: 16px auto;
   padding: 20px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 4px ${(props) => props.theme.cardShadow};
   border-radius: 20px;
   background-color: ${(props) => props.theme.bodyBgColor};
 `;

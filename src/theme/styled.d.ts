@@ -6,6 +6,7 @@ declare module "styled-components" {
     textBoldColor: string;
     bgColor: string;
     bodyBgColor: string;
+    cardShadow: string;
     isDark: boolean;
   }
 }

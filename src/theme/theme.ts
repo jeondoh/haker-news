@@ -6,6 +6,7 @@ export const lightTheme: DefaultTheme = {
   textColor: "#909090",
   textBoldColor: "#000000",
   bodyBgColor: "#F7F7F7",
+  cardShadow: "rgba(0, 0, 0, 0.15)",
   isDark: false,
 };
 
@@ -14,5 +15,6 @@ export const darkTheme: DefaultTheme = {
   textColor: "whitesmoke",
   textBoldColor: "#FFFFFF",
   bodyBgColor: "transparent",
+  cardShadow: "rgba(255, 255, 255, 0.15)",
   isDark: true,
 };

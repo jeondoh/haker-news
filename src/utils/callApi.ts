@@ -1,7 +1,6 @@
 import { useInfiniteQuery, useQueries, useQueryClient } from "react-query";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import { useCallback } from "react";
 
 /* 공통 API PATH */
 const BASE_PATH = "https://hacker-news.firebaseio.com/v0";

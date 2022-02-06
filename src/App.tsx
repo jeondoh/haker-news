@@ -9,6 +9,7 @@ import React from "react";
 
 function App() {
   const isDark = useRecoilValue(isDarkAtom);
+
   return (
     /* TODO : Dark & Light 모드 (미완) */
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
