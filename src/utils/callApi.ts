@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useQueries, useQueryClient } from "react-query";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 /* 공통 API PATH */
 const BASE_PATH = "https://hacker-news.firebaseio.com/v0";
@@ -129,14 +129,13 @@ export function useHomeAPIData() {
 }
 /**
  * 카테고리별 카드 정보 불러오기 커스텀 훅
- * ###Return : currentTitle, titleArr
- * @currentTitle(string) 현재 url 파라메터, 대문자
+ * ###Return : titleArr
  * @titleArr(ICard | undefined) url 파라메터에 해당되는 ICard 객체, undefined 예외처리 필요
  **/
-export function useGetCategoryInfo() {
+export function useGetCategoryTitle() {
   const queryClient = useQueryClient();
-  const location = useLocation();
-  const currentTitle: string = location.pathname.replace("/", "").toUpperCase();
+  const params = useParams();
+  const currentTitle: string = params.pageName!;
 
   const getCachedTitleData: ICard[] | undefined = queryClient.getQueryData(
     QUERY_KEYS.list("title")
@@ -145,7 +144,7 @@ export function useGetCategoryInfo() {
   const titleArr: ICard | undefined = getCachedTitleData?.find((ele) =>
     ele.category.includes(currentTitle)
   );
-  return { currentTitle, titleArr };
+  return titleArr;
 }
 /* 카테고리 페이지 infiniteQuery 인터페이스 */
 interface IInfiniteCategory {

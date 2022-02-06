@@ -21,6 +21,7 @@ export const Wrapper = styled.div`
 export interface ICardColor {
   commonColor: string;
   index?: number;
+  category?: string;
 }
 /* 타이틀 카드(메인페이지) */
 export const TitleCard = styled.div<ICardColor>`

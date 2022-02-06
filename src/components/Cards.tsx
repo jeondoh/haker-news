@@ -26,7 +26,11 @@ export default function Cards() {
         titleData?.map((cardData, index) => (
           <div key={cardData.category}>
             <TitleCards {...cardData} />
-            <ContentCards commonColor={cardData.color} index={index} />
+            <ContentCards
+              commonColor={cardData.color}
+              index={index}
+              category={cardData.category}
+            />
           </div>
         ))
       ) : (

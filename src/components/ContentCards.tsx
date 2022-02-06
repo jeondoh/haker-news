@@ -13,8 +13,13 @@ import {
   QUERY_FILTER_KEYS,
   QUERY_KEYS,
 } from "../utils/callApi";
+import { Link } from "react-router-dom";
 
-export default function ContentCards({ commonColor, index }: ICardColor) {
+export default function ContentCards({
+  commonColor,
+  index,
+  category,
+}: ICardColor) {
   const queryClient = useQueryClient();
   const value = QUERY_KEYS.list(QUERY_FILTER_KEYS[index!][0]);
   const cachedData: IContentCategory[] = queryClient.getQueryData(value)!;
@@ -23,7 +28,14 @@ export default function ContentCards({ commonColor, index }: ICardColor) {
     <>
       {cachedData?.map((data) => (
         <ContentCard key={data.id}>
-          <ContentTitle>{data.title}</ContentTitle>
+          <ContentTitle>
+            <Link
+              to={`/${category?.replace(" 5", "").toLowerCase()}/${data.id}`}
+              state={{ cardId: data.id }}
+            >
+              {data.title}
+            </Link>
+          </ContentTitle>
           {/*<ContentMain></ContentMain>*/}
           <ContentIconDiv>
             <FavoriteIcon htmlColor={commonColor} fontSize="small" />

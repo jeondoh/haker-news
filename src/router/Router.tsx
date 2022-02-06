@@ -15,6 +15,7 @@ import React, { useCallback, useRef } from "react";
 import { useRecoilState } from "recoil";
 import { isDarkAtom } from "../atom";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import Detail from "./Detail";
 
 export default function Router() {
   const [isDark, setIsDark] = useRecoilState(isDarkAtom);
@@ -37,7 +38,7 @@ export default function Router() {
       <Wrapper ref={scrollRef}>
         <Routes>
           <Route path="/:pageName" element={<Page />}>
-            <Route path=":id" />
+            <Route path=":id" element={<Detail />} />
           </Route>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} /> {/* 404 */}
