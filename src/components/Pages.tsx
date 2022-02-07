@@ -10,6 +10,7 @@ import {
   CategoryPageNewsUrl,
 } from "../styles/CardStyle";
 import { Link } from "react-router-dom";
+import { getDiffCurrentTime, subTitleUrl } from "../utils/utilsFn";
 
 interface IPages {
   currentTitle: string;
@@ -58,8 +59,8 @@ export default function Pages({ currentTitle }: IPages) {
               <CategoryPageNewsInfo>
                 {value.score} points <span>by {value.by}</span>
                 <br />
-                {getDiffCurrentTime(value.time)}{" "}
-                {getArrayLength(value.kids) ?? 0} comments
+                {getDiffCurrentTime(value.time)} {value.descendants ?? 0}{" "}
+                comments
               </CategoryPageNewsInfo>
             </CategoryPageContentCard>
           ));
@@ -73,35 +74,3 @@ export default function Pages({ currentTitle }: IPages) {
     </>
   );
 }
-
-// 카테고리 URL 가져오기
-const subTitleUrl = (urlStr: string): string => {
-  const reUrl = urlStr?.match(/^(http(s)?:\/\/)([a-z0-9-_.]*)/);
-  if (reUrl) {
-    return reUrl[0].replace(/^((http)(s)?:\/\/)?(www\.)?/, "");
-  }
-  return "";
-};
-
-// comment 길이 return 함수
-const getArrayLength = (kidsArr: number[]): number => kidsArr?.length;
-
-// 현재시간과 작성시간 시간 차이 return 함수
-const getDiffCurrentTime = (unixTime: number): string => {
-  // 데이터가 Unix 시간으로 들어옴
-  const now = new Date();
-  const writeDate = new Date(unixTime * 1000);
-  const diffTime = now.getTime() - writeDate.getTime();
-  const diffDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  const diffHour = Math.floor(diffTime / (1000 * 60 * 60));
-  const diffMinute = Math.floor(diffTime / (1000 * 60));
-
-  let resultDiff = `${diffMinute} m ago`;
-  if (diffMinute >= 60) {
-    resultDiff = `${diffHour} h ago`;
-    if (diffHour >= 24) {
-      resultDiff = `${diffDay} d ago`;
-    }
-  }
-  return resultDiff;
-};

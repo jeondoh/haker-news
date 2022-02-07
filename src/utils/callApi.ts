@@ -71,13 +71,13 @@ const getHomeCategoryId = async (category: string) => {
 };
 /* 카테고리별 내용 API Fetch (getHomeCategoryId 에서 콜백 호출) */
 const getContentCategory = async (idArr: Array<number>) => {
-  return await Promise.all(
-    idArr.map((id) => {
-      return axios
-        .get(`${BASE_PATH}/item/${id}.json`)
-        .then((value) => value.data);
-    })
-  );
+  return await Promise.all(idArr.map((id) => getContentCategoryId(id)));
+};
+/* ID 기준 API 불러오기 */
+export const getContentCategoryId = async (id: number) => {
+  return await axios
+    .get(`${BASE_PATH}/item/${id}.json`)
+    .then((value) => value.data);
 };
 /* 카테고리별 API */
 /**

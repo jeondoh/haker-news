@@ -94,7 +94,6 @@ export const ContentTitle = styled.p`
   font-weight: bold;
   font-size: 18px;
   line-height: 21px;
-  color: ${(props) => props.theme.textBoldColor};
 `;
 /* 내용 카드 > 내용 */
 export const ContentMain = styled.p`
@@ -102,7 +101,6 @@ export const ContentMain = styled.p`
   font-weight: 300;
   font-size: 12px;
   line-height: 14px;
-  color: ${(props) => props.theme.textBoldColor};
 `;
 /* 내용 카드 > 좋아요, 댓글 Div */
 export const ContentIconDiv = styled.div`
@@ -181,7 +179,6 @@ export const CategoryPageNewsTitle = styled.p`
   font-weight: 800;
   font-size: 16px;
   line-height: 110%;
-  color: ${(props) => props.theme.textBoldColor};
   margin: 10px 0;
 `;
 /* 카테고리페이지 > 정보 */

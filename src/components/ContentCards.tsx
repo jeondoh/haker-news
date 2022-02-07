@@ -15,6 +15,7 @@ import {
   QUERY_KEYS,
 } from "../utils/callApi";
 import { Link } from "react-router-dom";
+import { removeHTMLEntities } from "../utils/utilsFn";
 
 export default function ContentCards({
   commonColor,
@@ -29,13 +30,14 @@ export default function ContentCards({
     <>
       {cachedData?.map((data) => (
         <Link
+          key={data.id}
           to={`/${category?.replace(" 5", "").toLowerCase()}/${data.id}`}
           state={{ cardId: data.id }}
         >
-          <ContentCard key={data.id}>
+          <ContentCard>
             <ContentTitle>{data.title}</ContentTitle>
             {data.text ? (
-              <ContentMain>{removeHTMLEntities(data.text)}</ContentMain>
+              <ContentMain>{removeHTMLEntities(data.text, true)}</ContentMain>
             ) : null}
             <ContentIconDiv>
               <FavoriteIcon htmlColor={commonColor} fontSize="small" />
@@ -53,11 +55,3 @@ export default function ContentCards({
     </>
   );
 }
-// 특수문자 제거
-const removeHTMLEntities = (textData: string): string => {
-  let result = textData.slice(0, 300);
-  result = result.replaceAll(/<script[^>]*>([\S\s]*?)<\/script>/gim, "");
-  result = result.replaceAll(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gim, "");
-  result = result.replaceAll("&#x27;", "'");
-  return `${result}...`;
-};
