@@ -14,7 +14,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import SignalCellularAltIcon from "@material-ui/icons/SignalCellularAlt";
 import WifiIcon from "@material-ui/icons/Wifi";
 import BatteryCharging80Icon from "@material-ui/icons/BatteryCharging80";
-import useTimer from "../utils/getTime";
+import useTimer from "../utils/utilsFn";
 import { Link } from "react-router-dom";
 
 export default function Header() {

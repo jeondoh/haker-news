@@ -57,7 +57,10 @@ export default function Pages({ currentTitle }: IPages) {
                 </Link>
               </CategoryPageNewsTitle>
               <CategoryPageNewsInfo>
-                {value.score} points <span>by {value.by}</span>
+                {value.score} points{" "}
+                <Link to={`/user/${value.by}`}>
+                  <span>by {value.by}</span>
+                </Link>
                 <br />
                 {getDiffCurrentTime(value.time)} {value.descendants ?? 0}{" "}
                 comments

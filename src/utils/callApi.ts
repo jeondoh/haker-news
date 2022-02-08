@@ -17,6 +17,13 @@ export interface IContentCategory {
   type: string;
   url: string;
 }
+/* 유저정보 인터페이스(:name 조회시) */
+export interface IUserInfo {
+  created: number;
+  id: string;
+  karma: number;
+  submitted: number[];
+}
 /* 카테고리 */
 export interface ICard {
   color: string;
@@ -47,6 +54,8 @@ interface IQueryArr {
   list: IQueryArrListFn;
   details: IQueryArrFn;
   detail: IQueryArrDetailFn;
+  comments: IQueryArrFn;
+  comment: IQueryArrDetailFn;
 }
 /* react-query key 모음, 효율적 관리를 위해 함수로 나눔 */
 export const QUERY_KEYS: IQueryArr = {
@@ -55,6 +64,8 @@ export const QUERY_KEYS: IQueryArr = {
   list: (filters: string) => [...QUERY_KEYS.lists(), { filters }],
   details: () => [...QUERY_KEYS.all, "detail"],
   detail: (id: string | number) => [...QUERY_KEYS.details(), id],
+  comments: () => [...QUERY_KEYS.all, "detail", "comment"],
+  comment: (id: string | number) => [...QUERY_KEYS.comments(), id],
 };
 /* 카테고리별 카드 정보 가져오기(임의로 json 만듬) */
 export function getTitleInfo() {
@@ -77,6 +88,12 @@ const getContentCategory = async (idArr: Array<number>) => {
 export const getContentCategoryId = async (id: number) => {
   return await axios
     .get(`${BASE_PATH}/item/${id}.json`)
+    .then((value) => value.data);
+};
+/* ID 기준 유저 정보 불러오기 */
+export const getUserInfo = async (name: string) => {
+  return await axios
+    .get(`${BASE_PATH}/user/${name}.json`)
     .then((value) => value.data);
 };
 /* 카테고리별 API */
@@ -164,7 +181,7 @@ const getInfiniteCategoryId = async ({
   const endPage = startPage + 10;
 
   const data = await axios
-    .get(`${BASE_PATH}/${category}.json?page=${pageParam}`)
+    .get(`${BASE_PATH}/${category}.json`)
     .then((value) => value.data.slice(startPage, endPage));
   return await getContentCategory(data);
 };
@@ -194,4 +211,8 @@ export function useInfiniteQueryCategory(pageName: string) {
     }
   );
   return { isFetching, data, hasNextPage, fetchNextPage };
+}
+/* 댓글 가져오기 API */
+export function useGetComment() {
+  let commentArr = [];
 }

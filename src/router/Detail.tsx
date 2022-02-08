@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getContentCategoryId, IContentCategory } from "../utils/callApi";
 import { useEffect, useState } from "react";
 import {
@@ -45,7 +45,10 @@ export default function Detail() {
           <CardInfoWrapper>
             <DetailCardTitle>{data!.title}</DetailCardTitle>
             <DetailCardInfo>
-              {getDiffCurrentTime(data!.time)} <span>by {data!.by}</span>
+              {getDiffCurrentTime(data!.time)}{" "}
+              <Link to={`/user/${data!.by}`}>
+                <span>by {data!.by}</span>
+              </Link>
             </DetailCardInfo>
             <DetailCardMain>
               {removeHTMLEntities(data!.text, false)}
