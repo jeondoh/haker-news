@@ -1,45 +1,45 @@
 import {
   Img,
   ImgText,
+  StyledNavLink,
   Wrapper,
   WrapperFlex,
   WrapperImg,
 } from "../styles/FooterStyle";
-import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
     <Wrapper>
       <WrapperFlex>
         <WrapperImg>
-          <Link to="/top">
+          <StyledNavLink to="/top">
             <Img src={require("../images/top.png")} alt="Logo" />
             <ImgText>Top</ImgText>
-          </Link>
+          </StyledNavLink>
         </WrapperImg>
         <WrapperImg>
-          <Link to="/new">
+          <StyledNavLink to="/new">
             <Img src={require("../images/new.png")} alt="Logo" />
             <ImgText>New</ImgText>
-          </Link>
+          </StyledNavLink>
         </WrapperImg>
         <WrapperImg>
-          <Link to="/ask">
+          <StyledNavLink to="/ask">
             <Img src={require("../images/ask.png")} alt="Logo" />
             <ImgText>Ask</ImgText>
-          </Link>
+          </StyledNavLink>
         </WrapperImg>
         <WrapperImg>
-          <Link to="/show">
+          <StyledNavLink to="/show">
             <Img src={require("../images/show.png")} alt="Logo" />
             <ImgText>Show</ImgText>
-          </Link>
+          </StyledNavLink>
         </WrapperImg>
         <WrapperImg>
-          <Link to="/job">
+          <StyledNavLink to="/job">
             <Img src={require("../images/jobs.png")} alt="Logo" />
             <ImgText>Jobs</ImgText>
-          </Link>
+          </StyledNavLink>
         </WrapperImg>
       </WrapperFlex>
     </Wrapper>

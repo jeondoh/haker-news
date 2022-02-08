@@ -53,7 +53,7 @@ export const removeHTMLEntities = (
     result = result.replaceAll("&#x27;", "'");
     return `${result}...`;
   }
-  return "NO TEXT";
+  return "";
 };
 /**
  * 현재시간 가져오기(분단위) 커스텀 훅

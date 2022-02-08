@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const Wrapper = styled.div`
   position: relative;
@@ -19,7 +20,14 @@ export const WrapperFlex = styled.div`
 export const WrapperImg = styled.div`
   cursor: pointer;
 `;
-
+export const StyledNavLink = styled(NavLink)`
+  &[class*="active"] {
+    color: #fd6106;
+    img {
+      filter: invert(100%) sepia() saturate(10000%) hue-rotate(310deg);
+    }
+  }
+`;
 /* 하단바 이미지 */
 const filterInvert = css`
   filter: invert();

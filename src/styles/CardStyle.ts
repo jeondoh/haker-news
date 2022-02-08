@@ -121,13 +121,8 @@ export const CategoryPagWrapper = styled.div`
   width: 100%;
   font-family: Pretendard, sans-serif;
 `;
-
-/* 카테고리별 색상 인터페이스 */
-export interface ICategoryColor {
-  categoryColor: string;
-}
 /* 카테고리페이지 > 타이틀 */
-export const CategoryPageTitle = styled.div<ICategoryColor>`
+export const CategoryPageTitle = styled.div`
   height: 56px;
   border-bottom: 0.2px solid lightgray;
   span {
@@ -137,7 +132,7 @@ export const CategoryPageTitle = styled.div<ICategoryColor>`
     font-weight: bold;
     font-size: 36px;
     line-height: 100%;
-    color: ${(props) => props.categoryColor};
+    color: #fd6106;
   }
 `;
 /* 카테고리페이지 > 카드 */

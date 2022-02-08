@@ -146,7 +146,7 @@ export function useHomeAPIData() {
   return { isLoading, resultData };
 }
 /**
- * 카테고리별 카드 정보 불러오기 커스텀 훅
+ * 카테고리별 카드 정보 불러오기 커스텀 훅 (현재 사용안함)
  * ###Return : titleArr
  * @titleArr(ICard | undefined) url 파라메터에 해당되는 ICard 객체, undefined 예외처리 필요
  **/
