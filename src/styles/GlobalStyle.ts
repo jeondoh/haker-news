@@ -67,6 +67,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${(props) => props.theme.bgColor};
     color: ${(props) => props.theme.textBoldColor};
     margin-top: 50px;
+    word-break: break-word;
   }
 
   a {

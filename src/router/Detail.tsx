@@ -2,7 +2,15 @@ import { useParams } from "react-router-dom";
 import { getContentCategoryId, IContentCategory } from "../utils/callApi";
 import { useEffect, useState } from "react";
 import {
-  DetailCardCommentDiv,
+  CardInfoWrapper,
+  CommentContent,
+  CommentList,
+  CommentListWrapper,
+  CommentUserId,
+  CommentUserInfo,
+  CommentUserProfile,
+  CommentWrapper,
+  CommentWriteTime,
   DetailCardCommentInfo,
   DetailCardInfo,
   DetailCardMain,
@@ -34,18 +42,39 @@ export default function Detail() {
         <Loading />
       ) : (
         <DetailCardWrapper>
-          <DetailCardTitle>{data!.title}</DetailCardTitle>
-          <DetailCardInfo>
-            {getDiffCurrentTime(data!.time)} <span>by {data!.by}</span>
-          </DetailCardInfo>
-          <DetailCardMain>
-            {removeHTMLEntities(data!.text, false)}
-          </DetailCardMain>
-          <DetailCardCommentInfo>
-            {data!.descendants} comments
-          </DetailCardCommentInfo>
+          <CardInfoWrapper>
+            <DetailCardTitle>{data!.title}</DetailCardTitle>
+            <DetailCardInfo>
+              {getDiffCurrentTime(data!.time)} <span>by {data!.by}</span>
+            </DetailCardInfo>
+            <DetailCardMain>
+              {removeHTMLEntities(data!.text, false)}
+            </DetailCardMain>
+            <DetailCardCommentInfo>
+              {data!.descendants} comments
+            </DetailCardCommentInfo>
+          </CardInfoWrapper>
           {/* 댓글 */}
-          <DetailCardCommentDiv>ㄹㅇ</DetailCardCommentDiv>
+          <CommentWrapper>
+            <CommentList>
+              <CommentListWrapper>
+                <CommentUserInfo>
+                  <CommentUserProfile
+                    src={require("../images/userProfile.png")}
+                    alt="Profile"
+                  />
+                  <CommentUserId>Ask</CommentUserId>
+                </CommentUserInfo>
+                <CommentContent>
+                  내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
+                </CommentContent>
+                <CommentWriteTime>
+                  13 m ago
+                  {/*{getDiffCurrentTime(data!.time)}*/}
+                </CommentWriteTime>
+              </CommentListWrapper>
+            </CommentList>
+          </CommentWrapper>
         </DetailCardWrapper>
       )}
     </>

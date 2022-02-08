@@ -136,14 +136,17 @@ export function useHomeAPIData() {
 export function useGetCategoryTitle() {
   const queryClient = useQueryClient();
   const params = useParams();
-  const currentTitle: string = params.pageName!;
+  const currentTitle: string | undefined = params.pageName;
 
+  if (currentTitle === undefined) {
+    return null;
+  }
   const getCachedTitleData: ICard[] | undefined = queryClient.getQueryData(
     QUERY_KEYS.list("title")
   );
 
   const titleArr: ICard | undefined = getCachedTitleData?.find((ele) =>
-    ele.category.includes(currentTitle)
+    ele.category.includes(currentTitle?.toUpperCase())
   );
   return titleArr;
 }

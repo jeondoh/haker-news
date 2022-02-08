@@ -16,11 +16,9 @@ import WifiIcon from "@material-ui/icons/Wifi";
 import BatteryCharging80Icon from "@material-ui/icons/BatteryCharging80";
 import useTimer from "../utils/getTime";
 import { Link } from "react-router-dom";
-import { useGetCategoryTitle } from "../utils/callApi";
 
 export default function Header() {
   const { timer: currentTime } = useTimer();
-  const titleArr = useGetCategoryTitle();
 
   return (
     <Wrapper>
@@ -36,7 +34,7 @@ export default function Header() {
           </Infos>
         </InfoWrapper>
       </MobileInfo>
-      <LogoSearchBar categoryColor={titleArr?.color ?? "#FD6106"}>
+      <LogoSearchBar>
         {/* 로고 */}
         <Link to="/">
           <LogoImg src={require("../images/Logo.png")} alt="Logo" />
