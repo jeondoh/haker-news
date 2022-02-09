@@ -47,7 +47,7 @@ export default function Detail() {
               {removeHTMLEntities(data!.text, false)}
             </DetailCardMain>
             <DetailCardCommentInfo>
-              {data!.descendants} comments
+              {data!.descendants ?? 0} comments
             </DetailCardCommentInfo>
           </CardInfoWrapper>
           {/* 댓글 */}
