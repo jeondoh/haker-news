@@ -66,7 +66,7 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     background-color: ${(props) => props.theme.bgColor};
     color: ${(props) => props.theme.textBoldColor};
-    margin-top: 50px;
+    margin-top: 10px;
     word-break: break-word;
   }
 

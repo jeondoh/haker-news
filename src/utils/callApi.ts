@@ -10,6 +10,7 @@ export interface IContentCategory {
   descendants: number;
   id: number;
   kids: number[];
+  parent: number;
   text: string;
   score: number;
   time: number;
@@ -82,10 +83,10 @@ const getHomeCategoryId = async (category: string) => {
 };
 /* 카테고리별 내용 API Fetch (getHomeCategoryId 에서 콜백 호출) */
 const getContentCategory = async (idArr: Array<number>) => {
-  return await Promise.all(idArr.map((id) => getContentCategoryId(id)));
+  return await Promise.all(idArr.map((id) => getAPIById(id)));
 };
 /* ID 기준 API 불러오기 */
-export const getContentCategoryId = async (id: number) => {
+export const getAPIById = async (id: number) => {
   return await axios
     .get(`${BASE_PATH}/item/${id}.json`)
     .then((value) => value.data);
@@ -211,8 +212,4 @@ export function useInfiniteQueryCategory(pageName: string) {
     }
   );
   return { isFetching, data, hasNextPage, fetchNextPage };
-}
-/* 댓글 가져오기 API */
-export function useGetComment() {
-  let commentArr = [];
 }

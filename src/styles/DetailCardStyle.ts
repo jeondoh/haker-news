@@ -49,15 +49,11 @@ export const DetailCardCommentInfo = styled.p`
 /* 디테일 페이지 댓글 div */
 export const CommentWrapper = styled.div`
   height: auto;
-`;
-/* 댓글 리스트 */
-export const CommentList = styled.div`
-  padding: 20px 0;
-  border-top: 0.2px solid lightgray;
+  margin-left: 10px;
 `;
 /* 댓글 List Wrapper */
 export const CommentListWrapper = styled.div`
-  padding: 20px;
+  padding: 15px 10px;
 `;
 /* 댓글 작성자 정보 */
 export const CommentUserInfo = styled.div`

@@ -1,16 +1,8 @@
 import { Link, useParams } from "react-router-dom";
-import { getContentCategoryId, IContentCategory } from "../utils/callApi";
+import { getAPIById, IContentCategory } from "../utils/callApi";
 import { useEffect, useState } from "react";
 import {
   CardInfoWrapper,
-  CommentContent,
-  CommentList,
-  CommentListWrapper,
-  CommentUserId,
-  CommentUserInfo,
-  CommentUserProfile,
-  CommentWrapper,
-  CommentWriteTime,
   DetailCardCommentInfo,
   DetailCardInfo,
   DetailCardMain,
@@ -19,6 +11,7 @@ import {
 } from "../styles/DetailCardStyle";
 import Loading from "../components/Loading";
 import { getDiffCurrentTime, removeHTMLEntities } from "../utils/utilsFn";
+import Comments from "../components/Comments";
 
 export default function Detail() {
   const [data, setData] = useState<IContentCategory>();
@@ -28,7 +21,7 @@ export default function Detail() {
   // 데이터 fetch
   // 단건 데이터 조회기 때문에 react-query 사용하지 않음
   useEffect(() => {
-    const detailData: Promise<IContentCategory> = getContentCategoryId(paramId);
+    const detailData: Promise<IContentCategory> = getAPIById(paramId);
     detailData
       .then((value) => {
         setData(value);
@@ -58,26 +51,7 @@ export default function Detail() {
             </DetailCardCommentInfo>
           </CardInfoWrapper>
           {/* 댓글 */}
-          <CommentWrapper>
-            <CommentList>
-              <CommentListWrapper>
-                <CommentUserInfo>
-                  <CommentUserProfile
-                    src={require("../images/userProfile.png")}
-                    alt="Profile"
-                  />
-                  <CommentUserId>Ask</CommentUserId>
-                </CommentUserInfo>
-                <CommentContent>
-                  내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.내용입니다.
-                </CommentContent>
-                <CommentWriteTime>
-                  13 m ago
-                  {/*{getDiffCurrentTime(data!.time)}*/}
-                </CommentWriteTime>
-              </CommentListWrapper>
-            </CommentList>
-          </CommentWrapper>
+          <Comments kidsIdArr={data!.kids} newsId={paramId} />
         </DetailCardWrapper>
       )}
     </>
