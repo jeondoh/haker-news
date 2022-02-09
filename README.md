@@ -16,6 +16,7 @@
 - recoil : 0.5.2
 - axios : 0.25.0
 - react-query : 3.34.12
+- react-hook-form : 7.26.1
 - react-router-dom : 6.2.1
 - styled-components : 5.3.3
 - framer-motion : 6.2.3
@@ -25,5 +26,6 @@
 ### Dev List
 - [x] recoil 상태 관리
 - [x] 라이트 & 다크모드
-- [x] 일정 시간동안 캐싱된 데이터 유지, 다른 페이지를 다녀와도<br/>캐싱된 데이터 사용, refetch 되지 않음
+- [x] 일정 시간동안 캐싱된 데이터 유지, 다른 페이지를 다녀와도 캐싱된 데이터 사용, refetch 되지 않음
 - [x] 카테고리 상세페이지 무한 스크롤
+- [x] 뉴스 검색
