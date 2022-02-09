@@ -28,30 +28,34 @@ export default function ContentCards({
 
   return (
     <>
-      {cachedData?.map((data) => (
-        <Link
-          key={data.id}
-          to={`/${category?.replace(" 5", "").toLowerCase()}/${data.id}`}
-          state={{ cardId: data.id }}
-        >
-          <ContentCard>
-            <ContentTitle>{data.title}</ContentTitle>
-            {data.text ? (
-              <ContentMain>{removeHTMLEntities(data.text, true)}</ContentMain>
-            ) : null}
-            <ContentIconDiv>
-              <FavoriteIcon htmlColor={commonColor} fontSize="small" />
-              <ContentIconCnt commonColor={commonColor}>
-                {data.score ?? 0}
-              </ContentIconCnt>
-              <CommentIcon htmlColor={commonColor} fontSize="small" />
-              <ContentIconCnt commonColor={commonColor}>
-                {data.descendants ?? 0}
-              </ContentIconCnt>
-            </ContentIconDiv>
-          </ContentCard>
-        </Link>
-      ))}
+      {cachedData
+        ? cachedData.map((data) => (
+            <Link
+              key={data.id}
+              to={`/${category?.replace(" 5", "").toLowerCase()}/${data.id}`}
+              state={{ cardId: data.id }}
+            >
+              <ContentCard>
+                <ContentTitle>{data.title}</ContentTitle>
+                {data.text ? (
+                  <ContentMain>
+                    {removeHTMLEntities(data.text, true)}
+                  </ContentMain>
+                ) : null}
+                <ContentIconDiv>
+                  <FavoriteIcon htmlColor={commonColor} fontSize="small" />
+                  <ContentIconCnt commonColor={commonColor}>
+                    {data.score ?? 0}
+                  </ContentIconCnt>
+                  <CommentIcon htmlColor={commonColor} fontSize="small" />
+                  <ContentIconCnt commonColor={commonColor}>
+                    {data.descendants ?? 0}
+                  </ContentIconCnt>
+                </ContentIconDiv>
+              </ContentCard>
+            </Link>
+          ))
+        : null}
     </>
   );
 }

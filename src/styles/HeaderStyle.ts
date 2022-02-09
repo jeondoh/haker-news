@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const Wrapper = styled.div`
   position: relative;
@@ -56,6 +57,7 @@ export const LogoSearchBar = styled.div`
   width: 100%;
   height: 54px;
   border-bottom: 1px solid #fd6106;
+  z-index: 100;
 `;
 /* 로고 */
 export const LogoImg = styled.img`
@@ -74,8 +76,30 @@ export const LogoText = styled.span`
   font-size: 12px;
   line-height: 10.22px;
 `;
-export const Search = styled.div`
+export const Search = styled.form`
   position: absolute;
   top: 15px;
   right: 20px;
+  svg {
+    cursor: pointer;
+    margin-top: 3px;
+    width: 20px;
+    height: 20px;
+    z-index: 999;
+  }
+`;
+export interface IForm {
+  queryString: string;
+}
+/* 검색 input창 */
+export const Input = styled(motion.input)`
+  transform-origin: right center;
+  position: absolute;
+  right: 0;
+  padding: 5px 10px 5px 30px;
+  z-index: -1;
+  border-radius: 49px;
+  color: ${(props) => props.theme.textBoldColor};
+  background-color: transparent;
+  border: 1px solid ${(props) => props.theme.textColor};
 `;

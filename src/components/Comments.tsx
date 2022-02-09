@@ -7,10 +7,6 @@ interface IComments {
 }
 
 export default function Comments({ kidsIdArr, newsId }: IComments) {
-  /**/
-  console.log("______________________________________");
-  console.log(kidsIdArr);
-  console.log("______________________________________");
   return (
     <CommentWrapper>
       {kidsIdArr &&

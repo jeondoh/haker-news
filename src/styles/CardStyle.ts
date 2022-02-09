@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 30px;

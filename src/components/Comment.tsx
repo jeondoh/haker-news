@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { getAPIById, IContentCategory } from "../utils/callApi";
 import Comments from "./Comments";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 interface IComments {
   commentId: number;
@@ -19,17 +20,22 @@ interface IComments {
 
 export default function Comment({ commentId, newsId }: IComments) {
   const [data, setData] = useState<IContentCategory>();
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const detailData: Promise<IContentCategory> = getAPIById(commentId);
-    detailData.then((value) => {
-      setData(value);
-    });
+    detailData
+      .then((value) => {
+        setData(value);
+      })
+      .then(() => setLoading(false));
   }, [commentId]);
 
   return (
     <CommentListWrapper>
-      {data && data.text ? (
+      {isLoading ? (
+        <Loading />
+      ) : data && data.text ? (
         <>
           <CommentUserInfo>
             {newsId === data.parent ? (

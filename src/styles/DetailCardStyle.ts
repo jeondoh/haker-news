@@ -11,6 +11,7 @@ export const DetailCardWrapper = styled.div`
 `;
 export const CardInfoWrapper = styled.div`
   padding: 20px;
+  border-bottom: 0.2px solid lightgray;
 `;
 /* 디테일 페이지 타이틀 */
 export const DetailCardTitle = styled.p`

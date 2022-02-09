@@ -20,6 +20,7 @@ import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Detail from "./Detail";
 import User from "./User";
+import Search from "./Search";
 
 export default function Router() {
   const navigate = useNavigate();
@@ -46,6 +47,9 @@ export default function Router() {
       <Header />
       <Wrapper ref={scrollRef}>
         <Routes>
+          <Route path="/search">
+            <Route path=":queryString" element={<Search />} />
+          </Route>
           <Route path="/user">
             <Route path=":name" element={<User />} />
           </Route>

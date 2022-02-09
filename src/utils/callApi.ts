@@ -25,6 +25,16 @@ export interface IUserInfo {
   karma: number;
   submitted: number[];
 }
+/* 검색 인터페이스 */
+export interface ISearch {
+  title: string;
+  objectID: number;
+  url: string;
+  author: string;
+  points: number;
+  num_comments: number;
+  created_at_i: number;
+}
 /* 카테고리 */
 export interface ICard {
   color: string;
@@ -55,8 +65,6 @@ interface IQueryArr {
   list: IQueryArrListFn;
   details: IQueryArrFn;
   detail: IQueryArrDetailFn;
-  comments: IQueryArrFn;
-  comment: IQueryArrDetailFn;
 }
 /* react-query key 모음, 효율적 관리를 위해 함수로 나눔 */
 export const QUERY_KEYS: IQueryArr = {
@@ -65,8 +73,6 @@ export const QUERY_KEYS: IQueryArr = {
   list: (filters: string) => [...QUERY_KEYS.lists(), { filters }],
   details: () => [...QUERY_KEYS.all, "detail"],
   detail: (id: string | number) => [...QUERY_KEYS.details(), id],
-  comments: () => [...QUERY_KEYS.all, "detail", "comment"],
-  comment: (id: string | number) => [...QUERY_KEYS.comments(), id],
 };
 /* 카테고리별 카드 정보 가져오기(임의로 json 만듬) */
 export function getTitleInfo() {
@@ -184,11 +190,12 @@ const getInfiniteCategoryId = async ({
   const data = await axios
     .get(`${BASE_PATH}/${category}.json`)
     .then((value) => value.data.slice(startPage, endPage));
+
   return await getContentCategory(data);
 };
 /**
- * 카테고리 페이지 infiniteQuery, paging 10개씩 불러오는 커스텀 훅
- * ###Return : isFetching, data
+ * 카테고리 페이지 infiniteQuery, paging 불러오는 커스텀 훅
+ * ###Return : isFetching, data, hasNextPage, fetchNextPage
  * @isFetching(boolean) 쿼리 fetching 여부
  * @data(any[]) api 호출 결과 data
  * @hasNextPage(boolean) 다음페이지가 있는지 체크 여부
@@ -201,14 +208,59 @@ export function useInfiniteQueryCategory(pageName: string) {
     ({ pageParam }) => getInfiniteCategoryId({ category, pageParam }),
     {
       getNextPageParam: (_lastPage, pages) => {
-        // 10페이지로 제한
-        if (pages.length < 10) {
-          return pages.length + 1;
-        }
-        return undefined;
+        return _lastPage.length !== 0 ? pages.length + 1 : undefined;
       },
+      refetchOnWindowFocus: false,
       staleTime: 300000, // 5분
       cacheTime: 600000, // 10분
+    }
+  );
+  return { isFetching, data, hasNextPage, fetchNextPage };
+}
+/* 검색 infiniteQuery 인터페이스 */
+interface IInfiniteSearch {
+  queryString: string;
+  pageParam: number;
+}
+/* 검색 fetch Infinite */
+const getInfiniteSearchData = async ({
+  queryString,
+  pageParam = 1,
+}: IInfiniteSearch) => {
+  const startPage = (pageParam - 1) * 10;
+  const endPage = startPage + 10;
+
+  const data = await axios
+    .get(`https://hn.algolia.com/api/v1/search?query=${queryString}&tags=story`)
+    .then((value) => value.data.hits);
+
+  if (data) {
+    return data.slice(startPage, endPage);
+  }
+  return undefined;
+};
+/**
+ * 검색 infiniteQuery, paging 불러오는 커스텀 훅
+ * ###Return : isFetching, data, hasNextPage, fetchNextPage
+ * @isFetching(boolean) 쿼리 fetching 여부
+ * @data(any[]) api 호출 결과 data
+ * @hasNextPage(boolean) 다음페이지가 있는지 체크 여부
+ * @fetchNextPage(function) 다음 페이지로 이동 함수
+ **/
+export function useInfiniteQuerySearch(queryString: string) {
+  const listName = `search/${queryString}`;
+  const { isFetching, data, hasNextPage, fetchNextPage } = useInfiniteQuery<
+    ISearch[]
+  >(
+    QUERY_KEYS.list(listName),
+    ({ pageParam }) => getInfiniteSearchData({ queryString, pageParam }),
+    {
+      getNextPageParam: (_lastPage, pages) => {
+        return _lastPage.length !== 0 ? pages.length + 1 : undefined;
+      },
+      refetchOnWindowFocus: false,
+      staleTime: 60000, // 1분
+      cacheTime: 120000, // 2분
     }
   );
   return { isFetching, data, hasNextPage, fetchNextPage };
