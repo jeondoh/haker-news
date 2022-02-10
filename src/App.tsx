@@ -1,15 +1,22 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { darkTheme, lightTheme } from "./theme/theme";
 import { ThemeProvider } from "styled-components";
 import { isDarkAtom } from "./atom";
 import GlobalStyle from "./styles/GlobalStyle";
 import { ReactQueryDevtools } from "react-query/devtools";
 import Router from "./router/Router";
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  const isDark = useRecoilValue(isDarkAtom);
+  const [isDark, setIsDark] = useRecoilState(isDarkAtom);
+
+  useEffect(() => {
+    const localStDark = window.localStorage.getItem("isDark");
+    if (localStDark) {
+      setIsDark(Boolean(localStDark));
+    }
+  }, []);
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>

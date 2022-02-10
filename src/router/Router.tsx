@@ -13,7 +13,7 @@ import {
   ShowTopBtn,
   ThemeToggleBtn,
 } from "../styles/FloatStyle";
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { useRecoilState } from "recoil";
 import { isDarkAtom } from "../atom";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
@@ -32,8 +32,11 @@ export default function Router() {
   }, [navigate]);
 
   const setDarkMode = useCallback(() => {
-    setIsDark((prev) => !prev);
-  }, [setIsDark]);
+    setIsDark((prev) => {
+      window.localStorage.setItem("isDark", (!prev).toString());
+      return !prev;
+    });
+  }, [isDark]);
 
   const scrollToTop = useCallback(() => {
     scrollRef.current.scrollTo({
