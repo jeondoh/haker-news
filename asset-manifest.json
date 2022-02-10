@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/haker-news/static/js/main.6aa583bd.js",
+    "main.js": "/haker-news/static/js/main.3e7fc8d3.js",
     "static/media/Logo.png": "/haker-news/static/media/Logo.0f14769556901466dd1a.png",
     "index.html": "/haker-news/index.html",
-    "main.6aa583bd.js.map": "/haker-news/static/js/main.6aa583bd.js.map"
+    "main.3e7fc8d3.js.map": "/haker-news/static/js/main.3e7fc8d3.js.map"
   },
   "entrypoints": [
-    "static/js/main.6aa583bd.js"
+    "static/js/main.3e7fc8d3.js"
   ]
 }
