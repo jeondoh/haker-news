@@ -13,12 +13,10 @@ export default function User() {
   // 데이터 fetch
   // 단건 데이터 조회기 때문에 react-query 사용하지 않음
   useEffect(() => {
-    const detailData: Promise<IUserInfo> = getUserInfo(paramName);
-    detailData
-      .then((value) => {
-        setData(value);
-      })
-      .then(() => setLoading(false));
+    getUserInfo(paramName).then((value) => {
+      setData(value);
+      setLoading(false);
+    });
   }, [paramName]);
 
   return (

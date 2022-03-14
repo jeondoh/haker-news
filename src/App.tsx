@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     const localStDark = window.localStorage.getItem("isDark");
-    if (localStDark) {
+    if (localStDark === "true") {
       setIsDark(Boolean(localStDark));
     }
   }, []);

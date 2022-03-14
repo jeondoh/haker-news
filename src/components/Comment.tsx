@@ -23,12 +23,10 @@ export default function Comment({ commentId, newsId }: IComments) {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    const detailData: Promise<IContentCategory> = getAPIById(commentId);
-    detailData
-      .then((value) => {
-        setData(value);
-      })
-      .then(() => setLoading(false));
+    getAPIById(commentId).then((value) => {
+      setData(value);
+      setLoading(false);
+    });
   }, [commentId]);
 
   return (

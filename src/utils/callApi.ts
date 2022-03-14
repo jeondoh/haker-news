@@ -82,9 +82,9 @@ export function getTitleInfo() {
 }
 /* 카테고리별 API Fetch */
 const getHomeCategoryId = async (category: string) => {
-  const data = await axios
-    .get(`${BASE_PATH}/${category}.json?limitToFirst=5&orderBy="$key"`)
-    .then((value) => value.data);
+  const { data } = await axios.get(
+    `${BASE_PATH}/${category}.json?limitToFirst=5&orderBy="$key"`
+  );
   return await getContentCategory(data);
 };
 /* 카테고리별 내용 API Fetch (getHomeCategoryId 에서 콜백 호출) */
