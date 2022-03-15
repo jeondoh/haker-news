@@ -1,13 +1,9 @@
 import TitleCards from "./TitleCards";
 import ContentCards from "./ContentCards";
-import {
-  getTitleInfo,
-  ICard,
-  QUERY_KEYS,
-  useHomeAPIData,
-} from "../utils/callApi";
+import { getTitleInfo, ICard, QUERY_KEYS } from "../utils/callApi";
 import Loading from "./Loading";
 import { useQuery } from "react-query";
+import { useHomeAPIData } from "../hooks/useHomeAPIData";
 
 export default function Cards() {
   // 카테고리별 카드 정보 가져오기

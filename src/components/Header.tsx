@@ -15,11 +15,11 @@ import {
 import SignalCellularAltIcon from "@material-ui/icons/SignalCellularAlt";
 import WifiIcon from "@material-ui/icons/Wifi";
 import BatteryCharging80Icon from "@material-ui/icons/BatteryCharging80";
-import useTimer from "../utils/utilsFn";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { motion, useAnimation } from "framer-motion";
 import { useCallback, useState } from "react";
+import useTimer from "../hooks/useTimer";
 
 export default function Header() {
   const { timer: currentTime } = useTimer();

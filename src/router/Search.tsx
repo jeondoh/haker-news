@@ -7,10 +7,11 @@ import {
 } from "../styles/CardStyle";
 import { getDiffCurrentTime, subTitleUrl } from "../utils/utilsFn";
 import { Link, useParams } from "react-router-dom";
-import { ISearch, useInfiniteQuerySearch } from "../utils/callApi";
+import { ISearch } from "../utils/callApi";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import Loading from "../components/Loading";
+import { useInfiniteQuerySearch } from "../hooks/useInfiniteQuerySearch";
 
 export default function Search() {
   const { queryString } = useParams();

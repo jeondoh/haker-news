@@ -1,4 +1,4 @@
-import { IContentCategory, useInfiniteQueryCategory } from "../utils/callApi";
+import { IContentCategory } from "../utils/callApi";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import Loading from "./Loading";
@@ -11,6 +11,7 @@ import {
 } from "../styles/CardStyle";
 import { Link } from "react-router-dom";
 import { getDiffCurrentTime, subTitleUrl } from "../utils/utilsFn";
+import { useInfiniteQueryCategory } from "../hooks/useInfiniteQueryCategory";
 
 interface IPages {
   currentTitle: string;
