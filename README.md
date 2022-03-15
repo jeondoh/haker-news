@@ -41,9 +41,43 @@
     - api fetch용 함수, 공통 함수 모음
     
 ### 2. 개발 목록
-  - typescript를 사용해 데이터 type 지정, 오류 최소화 
-  - recoil 사용한 라이트 & 다크모드 상태관리
-  - react-query를 사용해 fetch된 데이터 캐싱, refetching 대기시간 관리
-  - 카테고리별 데이터 무한 스크롤 기능
-  - 컴포넌트 재귀적 사용, 댓글&대댓글 구현
+  - typescript를 사용해 데이터 type 지정, 오류 최소화
   - 뉴스 검색기능
+  ----
+  - recoil 사용한 라이트 & 다크모드 상태관리
+  
+![다크모드 1](https://user-images.githubusercontent.com/41669026/158421413-d9931a23-8456-47f8-af2d-32b4b3149fe4.PNG)
+
+Provider에 테마를 지정하여 컴포넌트별 styled-components에서 동적으로 모드별 색상을 지정할 수 있게 하였습니다.
+
+![다크모드 2](https://user-images.githubusercontent.com/41669026/158421416-4971855e-1ac1-44e1-91b1-1a7deee9e3aa.PNG)
+
+로컬 스토리지를 활용하여 사용자가 라이트/다크 모드 지정 후 브라우저 재시작시 유지되게 하였습니다.
+
+  ----
+  - react-query를 사용해 fetch된 데이터 캐싱, refetching 대기시간 관리
+
+![react-query key 관리](https://user-images.githubusercontent.com/41669026/158422617-81e66ec2-ca96-4ee2-90b7-40e94c7d532d.PNG)
+
+react-query 설정에 필요한 key들을 지정하거나 캐싱된 데이터를 꺼내올때 함수를 사용하여 효율적으로 관리하였습니다.
+
+![react-query](https://user-images.githubusercontent.com/41669026/158422622-50a84307-6893-4e66-8ad8-10b03b6344c6.PNG)
+
+개발환경일때 reactquerydevtools를 활용하여 fetch하여 캐싱된 데이터를 확일 할 수 있습니다.
+
+  ----
+  - 카테고리별 데이터 무한 스크롤 기능
+
+![무한스크롤](https://user-images.githubusercontent.com/41669026/158423465-79a16bed-ebd6-4797-abca-7a496877c219.PNG)
+
+react-intersection-observer와 함께 사용해 많은 데이터를 한꺼번에 가져오지 않고 페이징화 하여 관리했습니다.
+
+  ----
+  - 컴포넌트 재귀적 사용, 댓글&대댓글 구현
+
+![댓글 재귀1](https://user-images.githubusercontent.com/41669026/158423856-3743b956-98e0-4400-9dad-70da3d71e5da.PNG)
+![댓글 재귀2](https://user-images.githubusercontent.com/41669026/158423863-883f6091-f113-49ff-9b6d-e8cd1a3aaa95.PNG)
+
+Comment.tsx 댓글 컴포넌트와 Comments.tsx 대댓글 컴포넌트를 재귀적으로 사용하여 댓글/대댓글 기능을 구현하였습니다.
+
+  ----
